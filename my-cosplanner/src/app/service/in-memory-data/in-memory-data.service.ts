@@ -15,6 +15,7 @@ export class InMemoryDataService implements InMemoryDbService {
         initialDate: '13-09-2019',
         series: 'Final Fantasy',
         percentDone: 0,
+        picture: '',
         purchases: {
           purchasesName: [
             'tissu simili cuir',
@@ -61,6 +62,7 @@ export class InMemoryDataService implements InMemoryDbService {
         initialDate: '21-10-2019',
         series: 'Aladdin',
         percentDone: 0,
+        picture: '',
         purchases: {
           purchasesName: [
             'tissus',

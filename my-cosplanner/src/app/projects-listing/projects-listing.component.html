@@ -1,5 +1,10 @@
 <div *ngFor="let project of projects">
-    <p>{{project.character}}</p>
-    <p>{{project.series}}</p>
-    <p>{{project.percentDone}} %</p>
+    <p>{{ project.character }}</p>
+    <p>{{ project.series }}</p>
+    <p>{{ project.percentDone }} %</p>
+    <img *ngIf="project.picture" width="50" [src]="project.picture" alt="photo du projet">
+    <img *ngIf="!project.picture" width="50" src="assets/images/default_project_picture.png" alt="photo du projet">
 </div>
+
+<input type="file" (change)="getFile($event)">
+<button (click)="uploadFile()">Upload</button>

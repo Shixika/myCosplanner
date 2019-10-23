@@ -3,6 +3,7 @@ export class Project {
     character: string;
     series: string;
     percentDone: number;
+    picture?: FormData;
     budget?: number;
     dueDate?: string;
     initialDate?: string;
