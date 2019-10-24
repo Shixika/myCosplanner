@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Project } from '../service/project/project';
-import { ProjectService } from '../service/project/project.service'
+import { ProjectService } from '../service/project/project.service';
 
 @Component({
   selector: 'app-project-detail',
@@ -17,6 +17,7 @@ export class ProjectDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private projectService: ProjectService
   ) { }
@@ -41,18 +42,19 @@ export class ProjectDetailComponent implements OnInit {
   uploadFile() {
     this.project.picture = this.selectedFile.length > 0 ? this.selectedFile : this.project.picture;
     this.projectService.updateProject(this.project)
-    .subscribe(
-      result => {
-        this.projectService.getProject(this.project.id)
-          .subscribe(
-            res => this.project = res,
-            err => console.log(err),
-            () => console.log('get project', this.project.id, ' after update')
-          );
-      },
-      err => console.log(err),
-      () => console.log('update project', this.project.id)
-    );
+      .subscribe(
+        result => {
+          this.projectService.getProject(this.project.id)
+            .subscribe(
+              res => this.project = res,
+              err => console.log(err),
+              () => console.log('get project', this.project.id, ' after update')
+            );
+          this.router.navigate(['/index']);
+        },
+        err => console.log(err),
+        () => console.log('update project', this.project.id)
+      );
   }
 
   ngOnInit() {

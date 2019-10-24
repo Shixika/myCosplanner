@@ -2,20 +2,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+// Fake backend api
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data/in-memory-data.service';
+
+// Bootstrap components
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { AddProjectModalComponent } from './projects-listing/modal/add-project-modal/add-project-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsListingComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    AddProjectModalComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +32,13 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
+    NgbModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddProjectModalComponent
+  ]
 })
 export class AppModule { }
