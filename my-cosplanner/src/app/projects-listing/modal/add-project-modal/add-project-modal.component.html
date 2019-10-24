@@ -1,14 +1,32 @@
-<p></p>
-
-
 <div class="modal-header">
     <h4 class="modal-title">Créer un nouveau projet</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+
 <div class="modal-body">
     <p>Ajouter un nouveau projet</p>
+    <input type="text" class="form-control"
+        [(ngModel)]="character"
+        placeholder="Personnage"
+        (change)="project.character = character"/>
+    <input type="text" class="form-control"
+        [(ngModel)]="series"
+        placeholder="Series"
+        (change)="project.series = series"/>
+    <input type="number" class="form-control"
+        [(ngModel)]="budget"
+        placeholder="Budget"
+        (change)="project.budget = budget"/>
+    <input type="file" class="form-control"
+        [(ngModel)]="picture"
+        (change)="getFile($event)"/>
+    <!-- 
+        <input type="text" class="form-control" [(ngModel)]="picture" placeholder="picture"/>
+        <input type="dueDate" class="form-control" [(ngModel)]="picture"/>
+        <input type="initialDate" class="form-control" [(ngModel)]="picture"/>
+    -->
 </div>
 
 <div class="modal-footer">

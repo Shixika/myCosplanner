@@ -12,6 +12,14 @@ import { ProjectService } from '../../../service/project/project.service';
 export class AddProjectModalComponent implements OnInit {
   @Input() projects: Project[];
   project: Project;
+  budget: number;
+  character: string;
+  series: string;
+  selectedFile: any = null;
+  fileData: File = null;
+  picture: any;
+  /* dueDate: string;
+  initialDate: string; */
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -30,14 +38,32 @@ export class AddProjectModalComponent implements OnInit {
       );
   }
 
+  getFile(event) {
+    this.fileData = event.target.files[0];
+    this.setSelectedFile();
+  }
+
+  setSelectedFile() {
+    const mimeType = this.fileData.type;
+
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = () => this.project.picture = reader.result;
+  }
+
   ngOnInit() {
     if (this.projects) {
       this.project = {
         id: this.projects.length + 1,
-        character: 'test',
-        percentDone: 0,
-        series: 'testtest',
+        character: this.character,
+        series: this.series,
+        budget: this.budget,
         picture: '',
+        percentDone: 0,
         purchases: {
           purchasesName: [],
           purchasesPrice: [],

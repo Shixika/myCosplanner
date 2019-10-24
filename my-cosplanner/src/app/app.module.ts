@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // Fake backend api
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -26,6 +27,7 @@ import { AddProjectModalComponent } from './projects-listing/modal/add-project-m
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
