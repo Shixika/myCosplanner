@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectsListingComponent
+    ProjectsListingComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,

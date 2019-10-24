@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Project } from '../service/project/project';
-import { ProjectService } from '../service/project/project.service'
+import { ProjectService } from '../service/project/project.service';
 
 @Component({
   selector: 'app-projects-listing',
@@ -11,12 +11,6 @@ import { ProjectService } from '../service/project/project.service'
 
 export class ProjectsListingComponent implements OnInit {
   projects: Project[];
-  selectedFile: any = null;
-  fileData: File = null;
-
-  previewUrl: any = null;
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
 
   constructor(private projectService: ProjectService) { }
 
@@ -41,14 +35,9 @@ export class ProjectsListingComponent implements OnInit {
 
     todoPercentCalc.map((x, i) => totalPercentCalc.push(Math.round((x + purchasesPercentCalc[i]) / todoPercentCalc.length)));
 
-    // this.projectService.updateProject(this.project);
     this.projects.map((x, i) => {
-      this.projectService.updateProject({
-        id: i,
-        character: x.character,
-        series: x.series,
-        percentDone: totalPercentCalc[i]
-      })
+      x.percentDone = totalPercentCalc[i];
+      this.projectService.updateProject(x)
       .subscribe(
         result => {
           this.projectService.getProjects()
@@ -56,47 +45,6 @@ export class ProjectsListingComponent implements OnInit {
               results => this.projects = results,
               err => console.log(err),
               () => console.log('get all projects after update percentDone')
-            );
-        },
-        err => console.log(err),
-        () => console.log('update project', i)
-      );
-    });
-  }
-
-  getFile(event) {
-    this.fileData = event.target.files[0];
-    this.setSelectedFile();
-  }
-
-  setSelectedFile() {
-    const mimeType = this.fileData.type;
-
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = () => this.selectedFile = reader.result;
-  }
-
-  uploadFile() {
-    this.projects.map((x, i) => {
-      this.projectService.updateProject({
-        id: i,
-        character: x.character,
-        series: x.series,
-        percentDone: x.percentDone,
-        picture: this.selectedFile.length > 0 ? this.selectedFile : x.picture
-      })
-      .subscribe(
-        result => {
-          this.projectService.getProjects()
-            .subscribe(
-              results => this.projects = results,
-              err => console.log(err),
-              () => console.log('get all projects after update picture')
             );
         },
         err => console.log(err),
