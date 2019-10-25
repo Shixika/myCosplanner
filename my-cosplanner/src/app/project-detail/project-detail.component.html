@@ -39,9 +39,9 @@
                     </div>
                     <div class="Purchases-status">
                         <p class="Purchases-title">Statut</p>
-                        <div *ngFor="let projectPurchasesStatus of project.purchases.purchasesStatus">
-                            <i class="fa fa-check-circle Status-icon" aria-hidden="true" *ngIf="projectPurchasesStatus === true"></i>
-                            <i class="fa fa-circle-o Status-icon" aria-hidden="true" *ngIf="projectPurchasesStatus === false"></i>
+                        <div *ngFor="let projectPurchasesStatus of project.purchases.purchasesStatus; index as i">
+                            <i (click)="updateStatus(i, false)" class="fa fa-check-circle Status-icon" aria-hidden="true" *ngIf="projectPurchasesStatus === true"></i>
+                            <i (click)="updateStatus(i, true)" class="fa fa-circle-o Status-icon" aria-hidden="true" *ngIf="projectPurchasesStatus === false"></i>
                         </div>
                     </div>
                 </div>

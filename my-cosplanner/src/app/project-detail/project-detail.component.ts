@@ -55,6 +55,10 @@ export class ProjectDetailComponent implements OnInit {
 
   uploadFile() {
     this.project.picture = this.projectPictureFile ? this.projectPictureFile : this.project.picture;
+    this.updateProject();
+  }
+
+  updateProject() {
     this.projectService.updateProject(this.project)
       .subscribe(
         () => console.log('update'),
@@ -66,6 +70,11 @@ export class ProjectDetailComponent implements OnInit {
   openEditProjectModal(project) {
     const modalRef = this.modalService.open(EditProjectModalComponent);
     modalRef.componentInstance.project = project;
+  }
+
+  updateStatus(index: number, newStatus: boolean) {
+    this.project.purchases.purchasesStatus[index] = newStatus;
+    this.updateProject();
   }
 
   ngOnInit() {
