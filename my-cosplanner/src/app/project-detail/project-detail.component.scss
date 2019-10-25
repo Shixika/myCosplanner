@@ -1,0 +1,15 @@
+.Todos-list {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0 2em;
+    background-color: #f1f1f1;
+}
+
+.Todo-name {
+    text-align: left;
+}
+
+.Todo-title {
+    font-weight: 600;
+}

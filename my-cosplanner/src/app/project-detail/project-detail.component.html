@@ -2,9 +2,33 @@
     <p>{{ project.character }}</p>
     <p>{{ project.series }}</p>
     <p>{{ project.percentDone }} %</p>
+    
+    <!-- Project picture -->
     <img *ngIf="project.picture" width="50" [src]="project.picture" alt="photo du projet">
     <img *ngIf="!project.picture" width="50" src="assets/images/default_project_picture.png" alt="photo du projet">    
     
+    <!-- Todos -->
+    <div class="Todos-list">
+        <div class="Todo-name">
+            <p class="Todo-title">A faire</p>
+            <div *ngFor="let projectTodoName of project.todos.todosName">
+                <p>{{ projectTodoName }}</p>
+            </div>
+        </div>
+        <div class="Todo-time">
+            <p class="Todo-title">Temps</p>
+            <div *ngFor="let projectTodoTime of project.todos.todosTime">
+                <p>{{ projectTodoTime }}</p>
+            </div>
+        </div>
+        <div class="Todo-percent">
+            <p class="Todo-title">Pourcent</p>
+            <div *ngFor="let projectTodoPercent of project.todos.todosPercent">
+                <p>{{ projectTodoPercent }}</p>
+            </div>
+        </div>
+    </div>
+
     <button (click)="openEditProjectModal(project)">Modifier</button>
 </div>
 

@@ -29,11 +29,11 @@ export class EditProjectModalComponent implements OnInit {
   }
 
   saveProject(modal) {
-    this.project.character = this.character;
-    this.project.series = this.series;
-    this.project.budget = this.budget;
-    this.project.dueDate = this.dueDateInput;
-    this.project.initialDate = this.initialDateInput;
+    this.project.character = this.character ? this.character : this.project.character;
+    this.project.series = this.series ? this.series : this.project.series;
+    this.project.budget = this.budget ? this.budget : this.project.budget;
+    this.project.initialDate = this.initialDateInput ? this.initialDateInput : this.project.initialDate;
+    this.project.dueDate = this.dueDateInput ? this.dueDateInput : this.project.dueDate;
 
     this.projectService.updateProject(this.project)
       .subscribe(
