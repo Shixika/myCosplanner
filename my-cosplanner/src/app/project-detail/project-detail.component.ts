@@ -6,7 +6,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
 import { EditProjectModalComponent } from './modal/edit-project-modal/edit-project-modal.component';
-import { read } from 'fs';
 
 @Component({
   selector: 'app-project-detail',
