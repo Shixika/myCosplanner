@@ -1,15 +1,27 @@
-.Todos-list {
+.Project-detail {
+    text-align: center;
+}
+
+.Todos-list,
+.Purchases-list {
     display: flex;
     justify-content: space-between;
     text-align: center;
     padding: 0 2em;
     background-color: #f1f1f1;
+    margin: 1em 0;
 }
 
-.Todo-name {
+.Todo-name,
+.Purchases-name {
     text-align: left;
 }
 
-.Todo-title {
+.Todo-title,
+.Purchases-title {
     font-weight: 600;
+}
+
+.Status-icon {
+    padding: 10px;
 }

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
 import { EditProjectModalComponent } from './modal/edit-project-modal/edit-project-modal.component';
+import { read } from 'fs';
 
 @Component({
   selector: 'app-project-detail',
@@ -15,7 +16,9 @@ import { EditProjectModalComponent } from './modal/edit-project-modal/edit-proje
 export class ProjectDetailComponent implements OnInit {
   project: Project;
   selectedFile: any = null;
+  projectPictureFile: any = null;
   fileData: File = null;
+  referencePictureFile: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,12 +28,12 @@ export class ProjectDetailComponent implements OnInit {
     private projectService: ProjectService
   ) { }
 
-  getFile(event) {
+  getFile(event: any, fileType: string) {
     this.fileData = event.target.files[0];
-    this.setSelectedFile();
+    this.setPictureFile(fileType);
   }
 
-  setSelectedFile() {
+  setPictureFile(fileType: string) {
     const mimeType = this.fileData.type;
 
     if (mimeType.match(/image\/*/) == null) {
@@ -39,22 +42,22 @@ export class ProjectDetailComponent implements OnInit {
 
     const reader = new FileReader();
     reader.readAsDataURL(this.fileData);
-    reader.onload = () => this.selectedFile = reader.result;
+
+    reader.onload = () => {
+      if (fileType === 'projectPictureFile') {
+        this.projectPictureFile = reader.result;
+      } else {
+        this.project.references.push(reader.result);
+      }
+      this.uploadFile();
+    };
   }
 
   uploadFile() {
-    this.project.picture = this.selectedFile.length > 0 ? this.selectedFile : this.project.picture;
+    this.project.picture = this.projectPictureFile ? this.projectPictureFile : this.project.picture;
     this.projectService.updateProject(this.project)
       .subscribe(
-        result => {
-          this.projectService.getProject(this.project.id)
-            .subscribe(
-              res => this.project = res,
-              err => console.log(err),
-              () => console.log('get project', this.project.id, ' after update')
-            );
-          this.router.navigate(['/index']);
-        },
+        () => console.log('update'),
         err => console.log(err),
         () => console.log('update project', this.project.id)
       );

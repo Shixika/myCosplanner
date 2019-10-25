@@ -52,7 +52,8 @@ export class InMemoryDataService implements InMemoryDbService {
             0,
             0
           ]
-        }
+        },
+        references: []
       },
       {
         id: 1,
@@ -102,7 +103,8 @@ export class InMemoryDataService implements InMemoryDbService {
             0,
             0
           ]
-        }
+        },
+        references: []
       },
     ];
     return { projects };

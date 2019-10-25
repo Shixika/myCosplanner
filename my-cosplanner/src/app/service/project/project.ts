@@ -17,4 +17,5 @@ export class Project {
         todosPercent: number[];
         todosTime: number[];
     };
+    references?: Array<any>;
 }

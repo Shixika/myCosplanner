@@ -1,38 +1,97 @@
 <div *ngIf="project">
-    <p>{{ project.character }}</p>
-    <p>{{ project.series }}</p>
-    <p>{{ project.percentDone }} %</p>
-    
-    <!-- Project picture -->
-    <img *ngIf="project.picture" width="50" [src]="project.picture" alt="photo du projet">
-    <img *ngIf="!project.picture" width="50" src="assets/images/default_project_picture.png" alt="photo du projet">    
-    
-    <!-- Todos -->
-    <div class="Todos-list">
-        <div class="Todo-name">
-            <p class="Todo-title">A faire</p>
-            <div *ngFor="let projectTodoName of project.todos.todosName">
-                <p>{{ projectTodoName }}</p>
-            </div>
+    <div class="Project-detail">
+        <!-- Project picture -->
+        <img *ngIf="project.picture" width="50" [src]="project.picture" alt="photo du projet">
+        <img *ngIf="!project.picture" width="50" src="assets/images/default_project_picture.png" alt="photo du projet">
+        
+        <div>
+            <input type="file" (change)="getFile($event, 'projectPictureFile')">
         </div>
-        <div class="Todo-time">
-            <p class="Todo-title">Temps</p>
-            <div *ngFor="let projectTodoTime of project.todos.todosTime">
-                <p>{{ projectTodoTime }}</p>
-            </div>
-        </div>
-        <div class="Todo-percent">
-            <p class="Todo-title">Pourcent</p>
-            <div *ngFor="let projectTodoPercent of project.todos.todosPercent">
-                <p>{{ projectTodoPercent }}</p>
-            </div>
-        </div>
+
+        <!-- Project info -->
+        <p>{{ project.character }}</p>
+        <p>{{ project.series }}</p>
+        <p>{{ project.percentDone }} %</p>
+
+        <button (click)="openEditProjectModal(project)">Modifier</button>
     </div>
 
-    <button (click)="openEditProjectModal(project)">Modifier</button>
+    <ngb-tabset justify="justified">
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Achat
+            </ng-template>
+            <ng-template ngbTabContent>
+                <!-- Purchases -->
+                <div class="Purchases-list">
+                    <div class="Purchases-name">
+                        <p class="Purchases-title">A acheter</p>
+                        <div *ngFor="let projectPurchasesName of project.purchases.purchasesName">
+                            <p>{{ projectPurchasesName }}</p>
+                        </div>
+                    </div>
+                    <div class="Purchases-price">
+                        <p class="Purchases-title">Prix</p>
+                        <div *ngFor="let projectPurchasesPrice of project.purchases.purchasesPrice">
+                            <p>{{ projectPurchasesPrice }}</p>
+                        </div>
+                    </div>
+                    <div class="Purchases-status">
+                        <p class="Purchases-title">Statut</p>
+                        <div *ngFor="let projectPurchasesStatus of project.purchases.purchasesStatus">
+                            <i class="fa fa-check-circle Status-icon" aria-hidden="true" *ngIf="projectPurchasesStatus === true"></i>
+                            <i class="fa fa-circle-o Status-icon" aria-hidden="true" *ngIf="projectPurchasesStatus === false"></i>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <i class="fa fa-gavel" aria-hidden="true"></i>
+                A faire
+            </ng-template>
+            <ng-template ngbTabContent>
+                <!-- Todos -->
+                <div class="Todos-list">
+                    <div class="Todo-name">
+                        <p class="Todo-title">A faire</p>
+                        <div *ngFor="let projectTodoName of project.todos.todosName">
+                            <p>{{ projectTodoName }}</p>
+                        </div>
+                    </div>
+                    <div class="Todo-time">
+                        <p class="Todo-title">Temps</p>
+                        <div *ngFor="let projectTodoTime of project.todos.todosTime">
+                            <p>{{ projectTodoTime }}</p>
+                        </div>
+                    </div>
+                    <div class="Todo-percent">
+                        <p class="Todo-title">Pourcent</p>
+                        <div *ngFor="let projectTodoPercent of project.todos.todosPercent">
+                            <p>{{ projectTodoPercent }}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                Référence
+            </ng-template>
+            <ng-template ngbTabContent *ngIf="project.references.length > 0">
+                <div *ngFor="let projectReference of project.references">
+                    <img width="100" [src]="projectReference" alt="image de référence">
+                </div>
+                <input type="file" (change)="getFile($event, 'referencePictureFile')">
+            </ng-template>
+            <ng-template ngbTabContent *ngIf="project.references.length <= 0">
+                <input type="file" (change)="getFile($event, 'referencePictureFile')">
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
 </div>
 
-<input type="file" (change)="getFile($event)">
-
-<button (click)="uploadFile()">Sauvegarder</button>
 <a routerLink="/index">Revenir en arrière</a>
