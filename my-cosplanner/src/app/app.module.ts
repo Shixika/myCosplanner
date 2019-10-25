@@ -9,6 +9,7 @@ import { InMemoryDataService } from './service/in-memory-data/in-memory-data.ser
 
 // Bootstrap components
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,13 +17,15 @@ import { AppComponent } from './app.component';
 import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { AddProjectModalComponent } from './projects-listing/modal/add-project-modal/add-project-modal.component';
+import { EditProjectModalComponent } from './project-detail/modal/edit-project-modal/edit-project-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsListingComponent,
     ProjectDetailComponent,
-    AddProjectModalComponent
+    AddProjectModalComponent,
+    EditProjectModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,12 +38,14 @@ import { AddProjectModalComponent } from './projects-listing/modal/add-project-m
       InMemoryDataService, { dataEncapsulation: false }
     ),
     NgbModule,
+    FontAwesomeModule,
     AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    AddProjectModalComponent
+    AddProjectModalComponent,
+    EditProjectModalComponent
   ]
 })
 export class AppModule { }

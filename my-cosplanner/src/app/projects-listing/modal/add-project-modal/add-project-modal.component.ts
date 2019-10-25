@@ -18,8 +18,8 @@ export class AddProjectModalComponent implements OnInit {
   selectedFile: any = null;
   fileData: File = null;
   picture: any;
-  /* dueDate: string;
-  initialDate: string; */
+  dueDate: any;
+  initialDate: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -31,6 +31,7 @@ export class AddProjectModalComponent implements OnInit {
       .subscribe(
         result => {
           this.projects.push(result);
+          console.log(result);
           modal.close('Ok click');
         },
         err => console.log(err),
@@ -53,6 +54,12 @@ export class AddProjectModalComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(this.fileData);
     reader.onload = () => this.project.picture = reader.result;
+  }
+
+  setDatetoString(date: any, input: string) {
+    input === 'dueDate'
+      ? this.project.dueDate = date.day + '/' + date.month + '/' + date.year
+      : this.project.initialDate = date.day + '/' + date.month + '/' + date.year;
   }
 
   ngOnInit() {

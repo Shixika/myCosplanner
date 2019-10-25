@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
+import { EditProjectModalComponent } from './modal/edit-project-modal/edit-project-modal.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -19,6 +21,7 @@ export class ProjectDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
+    private modalService: NgbModal,
     private projectService: ProjectService
   ) { }
 
@@ -55,6 +58,11 @@ export class ProjectDetailComponent implements OnInit {
         err => console.log(err),
         () => console.log('update project', this.project.id)
       );
+  }
+
+  openEditProjectModal(project) {
+    const modalRef = this.modalService.open(EditProjectModalComponent);
+    modalRef.componentInstance.project = project;
   }
 
   ngOnInit() {

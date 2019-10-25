@@ -6,7 +6,7 @@
 </div>
 
 <div class="modal-body">
-    <p>Ajouter un nouveau projet</p>
+    <input type="file" class="form-control" [(ngModel)]="picture" (change)="getFile($event)" />
     <input type="text" class="form-control"
         [(ngModel)]="character"
         placeholder="Personnage"
@@ -17,16 +17,31 @@
         (change)="project.series = series"/>
     <input type="number" class="form-control"
         [(ngModel)]="budget"
-        placeholder="Budget"
+        placeholder="Budget (optionnel)"
         (change)="project.budget = budget"/>
-    <input type="file" class="form-control"
-        [(ngModel)]="picture"
-        (change)="getFile($event)"/>
-    <!-- 
-        <input type="text" class="form-control" [(ngModel)]="picture" placeholder="picture"/>
-        <input type="dueDate" class="form-control" [(ngModel)]="picture"/>
-        <input type="initialDate" class="form-control" [(ngModel)]="picture"/>
-    -->
+
+    <div class="input-group">
+        <input class="form-control" placeholder="Date de démarrage (optionnel)" name="initialDate" [(ngModel)]="initialDate"
+            ngbDatepicker #initialdate="ngbDatepicker" (ngModelChange)="setDatetoString(initialDate, 'initialDate')">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="initialdate.toggle()" type="button">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="input-group">
+        <input class="form-control" placeholder="Deadline (optionnel)" name="dueDate" 
+            [(ngModel)]="dueDate" 
+            ngbDatepicker
+            #duedate="ngbDatepicker"
+            (ngModelChange)="setDatetoString(dueDate, 'dueDate')">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="duedate.toggle()" type="button">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
 </div>
 
 <div class="modal-footer">

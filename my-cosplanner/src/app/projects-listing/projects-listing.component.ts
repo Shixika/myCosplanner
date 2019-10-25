@@ -4,7 +4,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
 import { AddProjectModalComponent } from './modal/add-project-modal/add-project-modal.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects-listing',
