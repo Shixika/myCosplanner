@@ -5,52 +5,54 @@
     </button>
 </div>
 
-<div class="modal-body">
-    <input type="file" class="form-control" [(ngModel)]="picture" (change)="getFile($event)" />
-    <input type="text" class="form-control"
-        [(ngModel)]="character"
-        placeholder="Personnage"
-        (change)="project.character = character"/>
-    <input type="text" class="form-control"
-        [(ngModel)]="series"
-        placeholder="Series"
-        (change)="project.series = series"/>
-    <input type="number" class="form-control"
-        [(ngModel)]="budget"
-        placeholder="Budget (optionnel)"
-        (change)="project.budget = budget"/>
+<ng-container *ngIf="project">
+    <div class="modal-body">
+        <input type="file" class="form-control" [(ngModel)]="picture" (change)="getFile($event)" />
+        <input type="text" class="form-control"
+            [(ngModel)]="character"
+            placeholder="Personnage"
+            (change)="project.character = character"/>
+        <input type="text" class="form-control"
+            [(ngModel)]="series"
+            placeholder="Series"
+            (change)="project.series = series"/>
+        <input type="number" class="form-control"
+            [(ngModel)]="budget"
+            placeholder="Budget (optionnel)"
+            (change)="project.budget = budget"/>
 
-    <div class="input-group">
-        <input class="form-control" placeholder="Date de démarrage (optionnel)" name="initialDate" [(ngModel)]="initialDate"
-            ngbDatepicker #initialdate="ngbDatepicker" (ngModelChange)="setDatetoString(initialDate, 'initialDate')">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="initialdate.toggle()" type="button">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            </button>
+        <div class="input-group">
+            <input class="form-control" placeholder="Date de démarrage (optionnel)" name="initialDate" [(ngModel)]="initialDate"
+                ngbDatepicker #initialdate="ngbDatepicker" (ngModelChange)="setDatetoString(initialDate, 'initialDate')">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="initialdate.toggle()" type="button">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <input class="form-control" placeholder="Deadline (optionnel)" name="dueDate" 
+                [(ngModel)]="dueDate" 
+                ngbDatepicker
+                #duedate="ngbDatepicker"
+                (ngModelChange)="setDatetoString(dueDate, 'dueDate')">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="duedate.toggle()" type="button">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     </div>
-    
-    <div class="input-group">
-        <input class="form-control" placeholder="Deadline (optionnel)" name="dueDate" 
-            [(ngModel)]="dueDate" 
-            ngbDatepicker
-            #duedate="ngbDatepicker"
-            (ngModelChange)="setDatetoString(dueDate, 'dueDate')">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="duedate.toggle()" type="button">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            </button>
-        </div>
-    </div>
-</div>
 
-<div class="modal-footer">
-    <button ngbAutofocus
-        type="button"
-        class="btn btn-danger"
-        (click)="addProject(this.activeModal)">Ajouter</button>
-    <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="activeModal.close('Close click')">Annuler</button>
-</div>
+    <div class="modal-footer">
+        <button ngbAutofocus
+            type="button"
+            class="btn btn-danger"
+            (click)="addProject(this.activeModal)">Ajouter</button>
+        <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="activeModal.close('Close click')">Annuler</button>
+    </div>
+</ng-container>

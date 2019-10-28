@@ -11,6 +11,7 @@ import { ProjectService } from '../../../service/project/project.service';
 })
 export class AddProjectModalComponent implements OnInit {
   @Input() projects: Project[];
+  @Input() projectsName: Array<string>;
   project: Project;
   budget: number;
   character: string;
@@ -26,11 +27,12 @@ export class AddProjectModalComponent implements OnInit {
     private projectService: ProjectService
   ) { }
 
-  addProject(modal) {
+  addProject(modal: any) {
     this.projectService.addProject(this.project)
       .subscribe(
         result => {
           this.projects.push(result);
+          this.projectsName.push(result.character);
           console.log(result);
           modal.close('Ok click');
         },
@@ -63,14 +65,16 @@ export class AddProjectModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.projects);
     if (this.projects) {
       this.project = {
         id: this.projects.length + 1,
-        character: this.character,
-        series: this.series,
-        budget: this.budget,
+        character: this.character ? this.character : '',
+        series: this.series ? this.series : '',
+        budget: this.budget ? this.budget : 0,
         picture: '',
         percentDone: 0,
+        references: [],
         purchases: {
           purchasesName: [],
           purchasesPrice: [],

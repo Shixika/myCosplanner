@@ -34,4 +34,9 @@ export class ProjectService {
   addProject(project: Project): Observable<Project> {
     return this.http.post<Project>(this.projectsUrl, project, this.httpOptions);
   }
+
+  searchProject(character: string): Observable<Project[]> {
+    const url = `${this.projectsUrl}?character=${character}`;
+    return this.http.get<Project[]>(url);
+  }
 }

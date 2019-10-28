@@ -1,5 +1,15 @@
+<!-- <input type="text" class="form-control" [(ngModel)]="search" placeholder="Rechercher"
+    (input)="searchProject(search)" /> -->
+
 <div *ngIf="projects">
-    <div *ngFor="let project of projects">
+    <input id="typeahead-config" type="text" class="form-control"
+        [(ngModel)]="searchInput"
+        [ngbTypeahead]="search"
+        placeholder="Rechercher" />
+    <button (click)="getSearchProject()">Rechercher</button>
+    <button (click)="getProjects()">Voir tout</button>
+
+    <div *ngFor="let project of projectSearch">
         <p>{{ project.character }}</p>
         <p>{{ project.series }}</p>
         <p>{{ project.percentDone }} %</p>
