@@ -14,6 +14,8 @@ export class EditProjectModalComponent implements OnInit {
   character: string;
   series: string;
   budget: number;
+  initialDate: any;
+  dueDate: string;
   dueDateInput: any;
   initialDateInput: any;
 
@@ -44,6 +46,11 @@ export class EditProjectModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.character = this.project ? this.project.character : '';
+    this.series = this.project ? this.project.series : '';
+    this.budget = this.project ? this.project.budget : 0;
+    this.initialDate = this.project ? this.project.initialDate : '';
+    // this.dueDate = this.project ? this.project.dueDate : '';
   }
 
 }

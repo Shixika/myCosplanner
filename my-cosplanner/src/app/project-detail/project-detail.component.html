@@ -12,6 +12,9 @@
         <p>{{ project.character }}</p>
         <p>{{ project.series }}</p>
         <p>{{ project.percentDone }} %</p>
+        <p>Date initiale : <span>{{ project.initialDate ? project.initialDate : '/' }}</span></p>
+        <p>Deadline : <span>{{ project.dueDate ? project.dueDate : '/' }}</span></p>
+        <p>Budget : <span>{{ project.budget ? project.budget + ' €' : '/' }}</span></p>
 
         <button (click)="openEditProjectModal(project)">Modifier</button>
     </div>

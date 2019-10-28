@@ -65,7 +65,6 @@ export class AddProjectModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.projects);
     if (this.projects) {
       this.project = {
         id: this.projects.length + 1,
@@ -75,6 +74,8 @@ export class AddProjectModalComponent implements OnInit {
         picture: '',
         percentDone: 0,
         references: [],
+        initialDate: '',
+        dueDate: '',
         purchases: {
           purchasesName: [],
           purchasesPrice: [],
