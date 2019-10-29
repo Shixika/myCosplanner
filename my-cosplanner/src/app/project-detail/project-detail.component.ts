@@ -7,6 +7,7 @@ import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
 import { EditProjectModalComponent } from './modal/edit-project-modal/edit-project-modal.component';
 import { AddProjectPurchaseModalComponent } from './modal/add-project-purchase-modal/add-project-purchase-modal.component';
+import { AddProjectTodoModalComponent } from './modal/add-project-todo-modal/add-project-todo-modal.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -74,6 +75,11 @@ export class ProjectDetailComponent implements OnInit {
 
   openAddProjectPurchaseModal(project) {
     const modalRef = this.modalService.open(AddProjectPurchaseModalComponent);
+    modalRef.componentInstance.project = project;
+  }
+
+  openAddProjectTodoModal(project) {
+    const modalRef = this.modalService.open(AddProjectTodoModalComponent);
     modalRef.componentInstance.project = project;
   }
 

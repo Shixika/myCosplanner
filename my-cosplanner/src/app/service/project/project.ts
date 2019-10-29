@@ -15,7 +15,8 @@ export class Project {
     todos?: {
         todosName: string[];
         todosPercent: number[];
-        todosTime: number[];
+        todosTime: string[];
+        todosEstimate: string[];
     };
     references?: Array<any>;
 }

@@ -47,10 +47,16 @@ export class InMemoryDataService implements InMemoryDbService {
             10
           ],
           todosTime: [
-            30,
-            0,
-            0,
-            0
+            '30h',
+            '',
+            '',
+            ''
+          ],
+          todosEstimate: [
+            '35h',
+            '5h',
+            '10h',
+            '3h'
           ]
         },
         references: []
@@ -96,12 +102,20 @@ export class InMemoryDataService implements InMemoryDbService {
             0
           ],
           todosTime: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            '',
+            '',
+            '',
+            '',
+            '',
+            ''
+          ],
+          todosEstimate: [
+            '',
+            '',
+            '',
+            '',
+            '',
+            ''
           ]
         },
         references: []

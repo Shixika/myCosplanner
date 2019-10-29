@@ -65,10 +65,16 @@
                             <p>{{ projectTodoName }}</p>
                         </div>
                     </div>
+                    <div class="Todo-estimate">
+                        <p class="Todo-title">Temps estimé</p>
+                        <div *ngFor="let projectTodoEstimate of project.todos.todosEstimate">
+                            <p>{{ projectTodoEstimate.length > 0 ? projectTodoEstimate : '-' }}</p>
+                        </div>
+                    </div>
                     <div class="Todo-time">
-                        <p class="Todo-title">Temps</p>
+                        <p class="Todo-title">Temps passé</p>
                         <div *ngFor="let projectTodoTime of project.todos.todosTime">
-                            <p>{{ projectTodoTime }}</p>
+                            <p>{{ projectTodoTime.length > 0 ? projectTodoTime : '-' }}</p>
                         </div>
                     </div>
                     <div class="Todo-percent">
@@ -78,6 +84,7 @@
                         </div>
                     </div>
                 </div>
+                <button (click)="openAddProjectTodoModal(project)">Ajouter</button>
             </ng-template>
         </ngb-tab>
         <ngb-tab>
