@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
 import { EditProjectModalComponent } from './modal/edit-project-modal/edit-project-modal.component';
+import { AddProjectPurchaseModalComponent } from './modal/add-project-purchase-modal/add-project-purchase-modal.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -68,6 +69,11 @@ export class ProjectDetailComponent implements OnInit {
 
   openEditProjectModal(project) {
     const modalRef = this.modalService.open(EditProjectModalComponent);
+    modalRef.componentInstance.project = project;
+  }
+
+  openAddProjectPurchaseModal(project) {
+    const modalRef = this.modalService.open(AddProjectPurchaseModalComponent);
     modalRef.componentInstance.project = project;
   }
 

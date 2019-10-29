@@ -37,7 +37,7 @@
                     <div class="Purchases-price">
                         <p class="Purchases-title">Prix</p>
                         <div *ngFor="let projectPurchasesPrice of project.purchases.purchasesPrice">
-                            <p>{{ projectPurchasesPrice }}</p>
+                            <p>{{ projectPurchasesPrice }} €</p>
                         </div>
                     </div>
                     <div class="Purchases-status">
@@ -48,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+                <button (click)="openAddProjectPurchaseModal(project)">Ajouter un achat</button>
             </ng-template>
         </ngb-tab>
         <ngb-tab>
