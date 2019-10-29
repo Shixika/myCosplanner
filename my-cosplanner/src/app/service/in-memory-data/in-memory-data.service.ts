@@ -16,49 +16,49 @@ export class InMemoryDataService implements InMemoryDbService {
         series: 'Final Fantasy',
         percentDone: 0,
         picture: '',
-        purchases: {
-          purchasesName: [
-            'tissu simili cuir',
-            'chaussure',
-            'ceintures'
-          ],
-          purchasesPrice: [
-            26.7,
-            29.6,
-            10
-          ],
-          purchasesStatus: [
-            true,
-            false,
-            false
-          ]
-        },
-        todos: {
-          todosName: [
-            'veste',
-            'épaulières',
-            'combinaison',
-            'plastron'
-          ],
-          todosPercent: [
-            100,
-            80,
-            0,
-            10
-          ],
-          todosTime: [
-            '30h',
-            '',
-            '',
-            ''
-          ],
-          todosEstimate: [
-            '35h',
-            '5h',
-            '10h',
-            '3h'
-          ]
-        },
+        purchases: [
+          {
+            name: 'tissu simili cuir',
+            price: 26.7,
+            status: true
+          },
+          {
+            name: 'chaussure',
+            price: 29.6,
+            status: false
+          },
+          {
+            name: 'ceintures',
+            price: 10,
+            status: false
+          }
+        ],
+        todos: [
+          {
+            name: 'veste',
+            percent: 100,
+            time: '30h',
+            estimate: '35h'
+          },
+          {
+            name: 'épaulières',
+            percent: 80,
+            time: '',
+            estimate: '5h'
+          },
+          {
+            name: 'combinaison',
+            percent: 0,
+            time: '',
+            estimate: '10h'
+          },
+          {
+            name: 'plastron',
+            percent: 10,
+            time: '',
+            estimate: '3h'
+          }
+        ],
         references: []
       },
       {
@@ -70,54 +70,56 @@ export class InMemoryDataService implements InMemoryDbService {
         series: 'Aladdin',
         percentDone: 0,
         picture: '',
-        purchases: {
-          purchasesName: [
-            'tissus',
-            'mercerie'
-          ],
-          purchasesPrice: [
-            40,
-            30
-          ],
-          purchasesStatus: [
-            true,
-            true
-          ]
-        },
-        todos: {
-          todosName: [
-            'haut',
-            'pantalon',
-            'jupe',
-            'ceinture',
-            'lampe',
-            'perruque'
-          ],
-          todosPercent: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          todosTime: [
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
-          ],
-          todosEstimate: [
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
-          ]
-        },
+        purchases: [
+          {
+            name: 'tissus',
+            price: 40,
+            status: true
+          },
+          {
+            name: 'mercerie',
+            price: 30,
+            status: true
+          }
+        ],
+        todos: [
+          {
+            name: 'haut',
+            percent: 0,
+            time: '',
+            estimate: '',
+          },
+          {
+            name: 'pantalon',
+            percent: 0,
+            time: '',
+            estimate: '',
+          },
+          {
+            name: 'jupe',
+            percent: 0,
+            time: '',
+            estimate: '',
+          },
+          {
+            name: 'ceinture',
+            percent: 0,
+            time: '',
+            estimate: '',
+          },
+          {
+            name: 'lampe',
+            percent: 0,
+            time: '',
+            estimate: '',
+          },
+          {
+            name: 'perruque',
+            percent: 0,
+            time: '',
+            estimate: '',
+          }
+        ],
         references: []
       },
     ];

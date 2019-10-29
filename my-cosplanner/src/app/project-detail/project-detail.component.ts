@@ -84,8 +84,20 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   updateStatus(index: number, newStatus: boolean) {
-    this.project.purchases.purchasesStatus[index] = newStatus;
+    this.project.purchases[index].status = newStatus;
     this.updateProject();
+  }
+
+  getPurchasesStatus(projectPurchases: any[]): number {
+    const purchaseResult = [];
+    projectPurchases.map(purchase => purchase.status === true ? purchaseResult.push(purchase) : null);
+    return purchaseResult.length;
+  }
+
+  getTodosStatus(projectTodos: any[]): number {
+    const todoResult = [];
+    projectTodos.map(todo => todo.percent === 100 ? todoResult.push(todo) : null);
+    return todoResult.length;
   }
 
   ngOnInit() {

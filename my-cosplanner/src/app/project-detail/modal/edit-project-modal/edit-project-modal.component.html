@@ -7,9 +7,9 @@
     </div>
 
     <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="character" placeholder="Personnage"
+        <input type="text" class="form-control" [(ngModel)]="character" placeholder="Personnage*"
             (change)="character = character" />
-        <input type="text" class="form-control" [(ngModel)]="series" placeholder="Series"
+        <input type="text" class="form-control" [(ngModel)]="series" placeholder="Series*"
             (change)="series = series" />
         <input type="number" class="form-control" [(ngModel)]="budget" placeholder="Budget (optionnel)"
             (change)="budget = budget" />
@@ -36,7 +36,9 @@
     </div>
 
     <div class="modal-footer">
-        <button ngbAutofocus type="button" class="btn btn-danger" (click)="saveProject(this.activeModal)">Sauvergarder</button>
+        <button ngbAutofocus type="button" class="btn btn-danger"
+            (click)="saveProject(this.activeModal)"
+            [disabled]="character && series ? false : true">Sauvergarder</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
     </div>
 </div>

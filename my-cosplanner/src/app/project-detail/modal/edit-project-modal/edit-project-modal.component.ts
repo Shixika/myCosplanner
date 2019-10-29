@@ -33,13 +33,16 @@ export class EditProjectModalComponent implements OnInit {
   saveProject(modal) {
     this.project.character = this.character ? this.character : this.project.character;
     this.project.series = this.series ? this.series : this.project.series;
-    this.project.budget = this.budget ? this.budget : this.project.budget;
+    this.project.budget = this.budget || this.budget === 0 ? this.budget : this.project.budget;
     this.project.initialDate = this.initialDateInput ? this.initialDateInput : this.project.initialDate;
     this.project.dueDate = this.dueDateInput ? this.dueDateInput : this.project.dueDate;
 
     this.projectService.updateProject(this.project)
       .subscribe(
-        () => modal.close('Save click'),
+        () => {
+          modal.close('Save click');
+          this.projectService.getProject(this.project.id);
+        },
         err => console.log(err),
         () => console.log('update project', this.project.id)
       );

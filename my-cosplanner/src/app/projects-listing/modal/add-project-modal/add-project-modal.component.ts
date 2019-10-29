@@ -76,16 +76,8 @@ export class AddProjectModalComponent implements OnInit {
         references: [],
         initialDate: '',
         dueDate: '',
-        purchases: {
-          purchasesName: [],
-          purchasesPrice: [],
-          purchasesStatus: []
-        },
-        todos: {
-          todosName: [],
-          todosPercent: [],
-          todosTime: []
-        }
+        purchases: [],
+        todos: []
       };
     }
   }

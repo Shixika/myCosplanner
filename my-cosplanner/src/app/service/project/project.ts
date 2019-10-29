@@ -7,16 +7,7 @@ export class Project {
     budget?: number;
     dueDate?: string;
     initialDate?: string;
-    purchases?: {
-        purchasesName: string[];
-        purchasesPrice: number[];
-        purchasesStatus: boolean[];
-    };
-    todos?: {
-        todosName: string[];
-        todosPercent: number[];
-        todosTime: string[];
-        todosEstimate: string[];
-    };
+    purchases?: Array<any>;
+    todos?: Array<any>;
     references?: Array<any>;
 }

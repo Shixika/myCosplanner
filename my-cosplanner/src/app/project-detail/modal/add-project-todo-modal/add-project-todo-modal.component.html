@@ -7,16 +7,17 @@
     </div>
 
     <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom" />
+        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom*" required />
         <label for="estimate">Temps estimé :</label>
         <div class="form-group">
-            <input type="number" class="form-control" [(ngModel)]="hour" placeholder="HH" min="0" />
-            <input type="number" class="form-control" [(ngModel)]="minute" placeholder="MM" min="0" max="59" />
+            <input type="number" class="form-control" [(ngModel)]="hour" placeholder="HH (optionnel)" min="0" />
+            <input type="number" class="form-control" [(ngModel)]="minute" placeholder="MM (optionnel)" min="0" max="59" />
         </div>
     </div>
 
     <div class="modal-footer">
         <button ngbAutofocus type="button" class="btn btn-danger"
+            [disabled]="name ? false : true"
             (click)="addTodoProject(this.activeModal)">Sauvergarder</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
     </div>

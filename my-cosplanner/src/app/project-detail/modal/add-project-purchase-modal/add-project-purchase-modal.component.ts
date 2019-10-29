@@ -20,9 +20,11 @@ export class AddProjectPurchaseModalComponent implements OnInit {
   ) { }
 
   addPurchaseProject(modal: any) {
-    this.project.purchases.purchasesName.push(this.name);
-    this.project.purchases.purchasesPrice.push(this.price);
-    this.project.purchases.purchasesStatus.push(false);
+    this.project.purchases.push({
+      name: this.name,
+      price: this.price,
+      status: false
+    });
 
     this.projectService.updateProject(this.project)
       .subscribe(

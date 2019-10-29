@@ -36,8 +36,11 @@ export class ProjectsListingComponent implements OnInit {
 
     this.projects.map(x => {
       // Percent base
-      const todosPercent = x.todos.todosPercent;
-      const purchasesStatus = x.purchases.purchasesStatus;
+      const todosPercent: number[] = [];
+      const purchasesStatus: boolean[] = [];
+
+      x.todos.map(todo => todosPercent.push(todo.percent));
+      x.purchases.map(purchase => purchasesStatus.push(purchase.status));
       const purchasesPercent: number[] = []; // [100, 0, 0], [100, 100];
 
       const reducer = (accumulator: number, currentValue: number) => (accumulator + currentValue);

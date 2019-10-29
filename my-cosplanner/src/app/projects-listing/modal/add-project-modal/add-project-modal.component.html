@@ -16,7 +16,7 @@
             [(ngModel)]="series"
             placeholder="Series"
             (change)="project.series = series"/>
-        <input type="number" class="form-control"
+        <input type="number" class="form-control" min="0"
             [(ngModel)]="budget"
             placeholder="Budget (optionnel)"
             (change)="project.budget = budget"/>

@@ -7,12 +7,13 @@
     </div>
 
     <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom" />
-        <input type="number" class="form-control" [(ngModel)]="price" placeholder="Prix" />
+        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom*" required />
+        <input type="number" class="form-control" [(ngModel)]="price" placeholder="Prix (optionnel)" min="0" />
     </div>
 
     <div class="modal-footer">
         <button ngbAutofocus type="button" class="btn btn-danger"
+            [disabled]="name ? false : true"
             (click)="addPurchaseProject(this.activeModal)">Sauvergarder</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
     </div>
