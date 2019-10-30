@@ -9,28 +9,33 @@
     background-color: #f1f1f1;
 }
 
+.Purchase {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+}
+
+.Purchase:hover {
+    background-color: #b7d6b6;
+    cursor: pointer;
+}
+
 .Todo-content, .Todo-title,
-.Purchase-content, .Purchase-title {
+.Purchase-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 2em;
+    padding: 0 1em;
+    flex: 1;
 }
 
 .Todo-content > *,
 .Todo-title > *,
-.Purchase-content > *,
-.Purchase-title > * {
+.Purchase-content > *{
     text-align: center;
     flex: 1;
     margin: .5em 0;
-}
-
-.Todo-content > *:first-child,
-.Todo-title > *:first-child,
-.Purchase-content > *:first-child,
-.Purchase-title > *:first-child {
-    text-align: left;
 }
 
 .Todo-title,
@@ -39,6 +44,18 @@
     font-weight: 600;
 }
 
+.Todo-content > *:first-child,
+.Todo-title > *:first-child,
+.Purchase-content > * {
+    text-align: left;
+}
+
+.Purchase-title > *:last-child {
+    text-align: right;
+}
+
 .Status-icon {
-    padding: 10px;
+    padding: 10px 0;
+    min-width: 50px;
+    text-align: center;
 }

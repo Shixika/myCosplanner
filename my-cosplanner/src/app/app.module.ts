@@ -20,6 +20,8 @@ import { AddProjectModalComponent } from './projects-listing/modal/add-project-m
 import { EditProjectModalComponent } from './project-detail/modal/edit-project-modal/edit-project-modal.component';
 import { AddProjectPurchaseModalComponent } from './project-detail/modal/add-project-purchase-modal/add-project-purchase-modal.component';
 import { AddProjectTodoModalComponent } from './project-detail/modal/add-project-todo-modal/add-project-todo-modal.component';
+import { EditProjectPurchaseModalComponent
+  } from './project-detail/modal/edit-project-purchase-modal/edit-project-purchase-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { AddProjectTodoModalComponent } from './project-detail/modal/add-project
     AddProjectModalComponent,
     EditProjectModalComponent,
     AddProjectPurchaseModalComponent,
-    AddProjectTodoModalComponent
+    AddProjectTodoModalComponent,
+    EditProjectPurchaseModalComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { AddProjectTodoModalComponent } from './project-detail/modal/add-project
     AddProjectModalComponent,
     EditProjectModalComponent,
     AddProjectPurchaseModalComponent,
-    AddProjectTodoModalComponent
+    AddProjectTodoModalComponent,
+    EditProjectPurchaseModalComponent
   ]
 })
 export class AppModule { }

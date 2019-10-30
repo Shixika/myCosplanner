@@ -8,6 +8,7 @@ import { ProjectService } from '../service/project/project.service';
 import { EditProjectModalComponent } from './modal/edit-project-modal/edit-project-modal.component';
 import { AddProjectPurchaseModalComponent } from './modal/add-project-purchase-modal/add-project-purchase-modal.component';
 import { AddProjectTodoModalComponent } from './modal/add-project-todo-modal/add-project-todo-modal.component';
+import { EditProjectPurchaseModalComponent } from './modal/edit-project-purchase-modal/edit-project-purchase-modal.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -62,24 +63,30 @@ export class ProjectDetailComponent implements OnInit {
   updateProject() {
     this.projectService.updateProject(this.project)
       .subscribe(
-        () => console.log('update'),
+        () => null,
         err => console.log(err),
         () => console.log('update project', this.project.id)
       );
   }
 
-  openEditProjectModal(project) {
+  openEditProjectModal(project: Project) {
     const modalRef = this.modalService.open(EditProjectModalComponent);
     modalRef.componentInstance.project = project;
   }
 
-  openAddProjectPurchaseModal(project) {
+  openAddProjectPurchaseModal(project: Project) {
     const modalRef = this.modalService.open(AddProjectPurchaseModalComponent);
     modalRef.componentInstance.project = project;
   }
 
-  openAddProjectTodoModal(project) {
+  openAddProjectTodoModal(project: Project) {
     const modalRef = this.modalService.open(AddProjectTodoModalComponent);
+    modalRef.componentInstance.project = project;
+  }
+
+  openEditProjectPurchaseModal(projectPurchase: {name: string, price: number, status: boolean}, project: Project) {
+    const modalRef = this.modalService.open(EditProjectPurchaseModalComponent);
+    modalRef.componentInstance.projectPurchase = projectPurchase;
     modalRef.componentInstance.project = project;
   }
 
@@ -104,7 +111,10 @@ export class ProjectDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.projectService.getProject(id)
       .subscribe(
-        result => this.project = result,
+        result => {
+          this.project = result;
+          this.projectService.calcPercentProject(result);
+        },
         err => console.log(err),
         () => console.log('get project', id)
       );

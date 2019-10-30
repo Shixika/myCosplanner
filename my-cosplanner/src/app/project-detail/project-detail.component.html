@@ -29,19 +29,25 @@
             <ng-template ngbTabContent>
                 <!-- Purchases -->
                 <div class="Purchases-list" *ngIf="project.purchases.length > 0">
-                    <div class="Purchase-title">
-                        <p>A acheter</p>
-                        <p>Prix</p>
+                    <div class="Purchase Purchase-title">
+                        <div class="Purchase-content">
+                            <p>A acheter</p>
+                            <p>Prix</p>
+                        </div>
                         <p>Statut</p>
                     </div>
-                    <div class="Purchase-content" *ngFor="let projectPurchase of project.purchases; index as i">
-                        <p>{{ projectPurchase.name }}</p>
-                        <p>{{ projectPurchase.price ? projectPurchase.price + '€' : '-' }}</p>
-                        <i (click)="updateStatus(i, false)" class="fa fa-check-circle Status-icon" aria-hidden="true"
-                            *ngIf="projectPurchase.status === true"></i>
-                        <i (click)="updateStatus(i, true)" class="fa fa-circle-o Status-icon" aria-hidden="true"
-                            *ngIf="projectPurchase.status === false"></i>
-                    </div>
+                    <ng-container *ngFor="let projectPurchase of project.purchases; index as i">
+                        <div class="Purchase">
+                            <div class="Purchase-content" (click)="openEditProjectPurchaseModal(projectPurchase, project)">
+                                <p>{{ projectPurchase.name }}</p>
+                                <p>{{ projectPurchase.price ? projectPurchase.price + '€' : '-' }}</p>
+                            </div>
+                            <i (click)="updateStatus(i, false)" class="fa fa-check-circle Status-icon" aria-hidden="true"
+                                *ngIf="projectPurchase.status === true"></i>
+                            <i (click)="updateStatus(i, true)" class="fa fa-circle-o Status-icon" aria-hidden="true"
+                                *ngIf="projectPurchase.status === false"></i>
+                        </div>
+                    </ng-container>
                 </div>
                 <button (click)="openAddProjectPurchaseModal(project)">Ajouter un achat</button>
             </ng-template>

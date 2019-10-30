@@ -30,7 +30,7 @@ export class EditProjectModalComponent implements OnInit {
       : this.initialDateInput = date.day + '/' + date.month + '/' + date.year;
   }
 
-  saveProject(modal) {
+  saveProject(modal: any) {
     this.project.character = this.character ? this.character : this.project.character;
     this.project.series = this.series ? this.series : this.project.series;
     this.project.budget = this.budget || this.budget === 0 ? this.budget : this.project.budget;

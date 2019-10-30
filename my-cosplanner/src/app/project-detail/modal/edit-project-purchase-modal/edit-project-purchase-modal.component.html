@@ -1,0 +1,19 @@
+<div *ngIf='projectPurchase'>
+    <div class="modal-header">
+        <h4 class="modal-title">Modifier l'achat</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom*" required />
+        <input type="number" class="form-control" [(ngModel)]="price" placeholder="Prix (optionnel)" min="0" />
+    </div>
+
+    <div class="modal-footer">
+        <button ngbAutofocus type="button" class="btn btn-danger" [disabled]="name ? false : true"
+            (click)="updatePurchaseProject(this.activeModal)">Sauvergarder</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
+    </div>
+</div>
