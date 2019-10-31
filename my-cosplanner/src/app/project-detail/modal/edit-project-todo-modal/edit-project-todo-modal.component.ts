@@ -74,6 +74,19 @@ export class EditProjectTodoModalComponent implements OnInit {
       );
   }
 
+  deleteTodoProject(modal: any) {
+    const indexTodo = this.project.todos.indexOf(this.projectTodo);
+    this.project.todos.splice(indexTodo, 1);
+
+    // Update project
+    this.projectService.updateProject(this.project)
+      .subscribe(
+        () => modal.close('Delete click'),
+        err => console.log(err),
+        () => console.log('update project', this.project.id)
+      );
+  }
+
   setPercents() {
     let percent = -5;
 

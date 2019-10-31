@@ -12,8 +12,9 @@
     </div>
 
     <div class="modal-footer">
-        <button ngbAutofocus type="button" class="btn btn-danger" [disabled]="name ? false : true"
+        <button ngbAutofocus type="button" class="btn btn-primary" [disabled]="name ? false : true"
             (click)="updatePurchaseProject(this.activeModal)">Sauvergarder</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
+        <button type="button" class="btn btn-danger" (click)="deletePurchaseProject(this.activeModal)">Supprimer</button>
     </div>
 </div>
