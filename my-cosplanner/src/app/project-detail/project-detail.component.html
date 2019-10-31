@@ -24,7 +24,7 @@
             <ng-template ngbTabTitle>
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 Achat ({{ getPurchasesStatus(project.purchases) }}/{{ project.purchases.length }})
-                <i *ngIf="getPurchasesStatus(project.purchases) === project.purchases.length" class="fa fa-check" aria-hidden="true"></i>
+                <i *ngIf="getPurchasesStatus(project.purchases) === project.purchases.length && project.purchases.length > 0" class="fa fa-check" aria-hidden="true"></i>
             </ng-template>
             <ng-template ngbTabContent>
                 <!-- Purchases -->
@@ -40,7 +40,7 @@
                         <div class="Purchase">
                             <div class="Purchase-content" (click)="openEditProjectPurchaseModal(projectPurchase, project)">
                                 <p>{{ projectPurchase.name }}</p>
-                                <p>{{ projectPurchase.price ? projectPurchase.price + '€' : '-' }}</p>
+                                <p>{{ projectPurchase.price ? projectPurchase.price + ' €' : '-' }}</p>
                             </div>
                             <i (click)="updateStatus(i, false)" class="fa fa-check-circle Status-icon" aria-hidden="true"
                                 *ngIf="projectPurchase.status === true"></i>
@@ -56,7 +56,7 @@
             <ng-template ngbTabTitle>
                 <i class="fa fa-gavel" aria-hidden="true"></i>
                 A faire ({{ getTodosStatus(project.todos) }}/{{ project.todos.length }})
-                <i *ngIf="getTodosStatus(project.todos) === project.todos.length" class="fa fa-check" aria-hidden="true"></i>
+                <i *ngIf="getTodosStatus(project.todos) === project.todos.length && project.todos.length > 0" class="fa fa-check" aria-hidden="true"></i>
             </ng-template>
             <ng-template ngbTabContent>
                 <!-- Todos -->
@@ -67,12 +67,14 @@
                         <p>Temps passé</p>
                         <p>Pourcent</p>
                     </div>
-                    <div class="Todo-content" *ngFor="let projectTodo of project.todos">
-                        <p>{{ projectTodo.name }}</p>
-                        <p>{{ projectTodo.estimate.length > 0 ? projectTodo.estimate : '-' }}</p>
-                        <p>{{ projectTodo.time.length > 0 ? projectTodo.time : '-' }}</p>
-                        <p>{{ projectTodo.percent }} %</p>
-                    </div>
+                    <ng-container *ngFor="let projectTodo of project.todos">
+                        <div class="Todo-content" (click)="openEditProjectTodoModal(projectTodo, project)">
+                            <p>{{ projectTodo.name }}</p>
+                            <p>{{ projectTodo.estimate.length > 0 ? projectTodo.estimate : '-' }}</p>
+                            <p>{{ projectTodo.time.length > 0 ? projectTodo.time : '-' }}</p>
+                            <p>{{ projectTodo.percent }} %</p>
+                        </div>
+                    </ng-container>
                 </div>
                 <button (click)="openAddProjectTodoModal(project)">Ajouter</button>
             </ng-template>

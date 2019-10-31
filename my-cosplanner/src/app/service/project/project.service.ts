@@ -104,7 +104,7 @@ export class ProjectService {
     }
     // Calcul percent for purchases and todos list
     todosPercentCalc.map((x, i) =>
-      totalPercentCalc.push(Math.round((x + purchasesPercentCalc[i]) / 2)));
+      totalPercentCalc.push((x + purchasesPercentCalc[i]) / 2));
 
     return of(totalPercentCalc);
   }

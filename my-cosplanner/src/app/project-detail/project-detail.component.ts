@@ -9,6 +9,7 @@ import { EditProjectModalComponent } from './modal/edit-project-modal/edit-proje
 import { AddProjectPurchaseModalComponent } from './modal/add-project-purchase-modal/add-project-purchase-modal.component';
 import { AddProjectTodoModalComponent } from './modal/add-project-todo-modal/add-project-todo-modal.component';
 import { EditProjectPurchaseModalComponent } from './modal/edit-project-purchase-modal/edit-project-purchase-modal.component';
+import { EditProjectTodoModalComponent } from './modal/edit-project-todo-modal/edit-project-todo-modal.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -87,6 +88,12 @@ export class ProjectDetailComponent implements OnInit {
   openEditProjectPurchaseModal(projectPurchase: {name: string, price: number, status: boolean}, project: Project) {
     const modalRef = this.modalService.open(EditProjectPurchaseModalComponent);
     modalRef.componentInstance.projectPurchase = projectPurchase;
+    modalRef.componentInstance.project = project;
+  }
+
+  openEditProjectTodoModal(projectTodo: { name: string, percent: number, time: string, estimate: string }, project: Project) {
+    const modalRef = this.modalService.open(EditProjectTodoModalComponent);
+    modalRef.componentInstance.projectTodo = projectTodo;
     modalRef.componentInstance.project = project;
   }
 

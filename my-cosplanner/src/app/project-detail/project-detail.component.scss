@@ -16,7 +16,7 @@
     padding: 0 1em;
 }
 
-.Purchase:hover {
+.Purchase:hover:not(.Purchase-title) {
     background-color: #b7d6b6;
     cursor: pointer;
 }
