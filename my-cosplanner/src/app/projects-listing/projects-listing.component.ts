@@ -23,8 +23,7 @@ export class ProjectsListingComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private modalService: NgbModal,
-    config: NgbTypeaheadConfig
-  ) {
+    config: NgbTypeaheadConfig ) {
     config.showHint = true;
   }
 
@@ -35,11 +34,13 @@ export class ProjectsListingComponent implements OnInit {
   }
 
   getProjects(): void {
+    this.searchInput = '';
     this.projectService.getProjects()
       .subscribe(
         results => {
           this.projects = results;
           this.projectSearch = results;
+          this.projectService.calcPercentProjects(results);
         },
         err => console.log(err),
         () => console.log('get all projects')
@@ -57,7 +58,10 @@ export class ProjectsListingComponent implements OnInit {
   getSearchProject() {
     this.projectService.searchProject(this.searchInput)
       .subscribe(
-        results => this.projectSearch = results,
+        results => {
+          this.projectSearch = results;
+          this.projectService.calcPercentProjects(results);
+        },
         err => console.log(err),
         () => console.log('get search projects')
       );

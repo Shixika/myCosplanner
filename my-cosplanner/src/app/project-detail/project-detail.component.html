@@ -20,38 +20,24 @@
     </div>
 
     <ngb-tabset justify="justified">
+        <!-- References pictures -->
         <ngb-tab>
             <ng-template ngbTabTitle>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                Achat ({{ getPurchasesStatus(project.purchases) }}/{{ project.purchases.length }})
-                <i *ngIf="getPurchasesStatus(project.purchases) === project.purchases.length && project.purchases.length > 0" class="fa fa-check" aria-hidden="true"></i>
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                Référence ({{ project.references.length }})
             </ng-template>
-            <ng-template ngbTabContent>
-                <!-- Purchases -->
-                <div class="Purchases-list" *ngIf="project.purchases.length > 0">
-                    <div class="Purchase Purchase-title">
-                        <div class="Purchase-content">
-                            <p>A acheter</p>
-                            <p>Prix</p>
-                        </div>
-                        <p>Statut</p>
-                    </div>
-                    <ng-container *ngFor="let projectPurchase of project.purchases; index as i">
-                        <div class="Purchase">
-                            <div class="Purchase-content" (click)="openEditProjectPurchaseModal(projectPurchase, project)">
-                                <p>{{ projectPurchase.name }}</p>
-                                <p>{{ projectPurchase.price ? projectPurchase.price + ' €' : '-' }}</p>
-                            </div>
-                            <i (click)="updateStatus(i, false)" class="fa fa-check-circle Status-icon" aria-hidden="true"
-                                *ngIf="projectPurchase.status === true"></i>
-                            <i (click)="updateStatus(i, true)" class="fa fa-circle-o Status-icon" aria-hidden="true"
-                                *ngIf="projectPurchase.status === false"></i>
-                        </div>
-                    </ng-container>
+            <ng-template ngbTabContent *ngIf="project.references.length > 0">
+                <div *ngFor="let projectReference of project.references">
+                    <img width="100" [src]="projectReference" alt="image de référence">
                 </div>
-                <button (click)="openAddProjectPurchaseModal(project)">Ajouter un achat</button>
+                <input type="file" (change)="getFile($event, 'referencePictureFile')">
+            </ng-template>
+            <ng-template ngbTabContent *ngIf="project.references.length <= 0">
+                <input type="file" (change)="getFile($event, 'referencePictureFile')">
             </ng-template>
         </ngb-tab>
+
+        <!-- To do -->
         <ngb-tab>
             <ng-template ngbTabTitle>
                 <i class="fa fa-gavel" aria-hidden="true"></i>
@@ -79,19 +65,39 @@
                 <button (click)="openAddProjectTodoModal(project)">Ajouter</button>
             </ng-template>
         </ngb-tab>
+
+        <!-- To buy -->
         <ngb-tab>
             <ng-template ngbTabTitle>
-                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                Référence ({{ project.references.length }})
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Achat ({{ getPurchasesStatus(project.purchases) }}/{{ project.purchases.length }})
+                <i *ngIf="getPurchasesStatus(project.purchases) === project.purchases.length && project.purchases.length > 0"
+                    class="fa fa-check" aria-hidden="true"></i>
             </ng-template>
-            <ng-template ngbTabContent *ngIf="project.references.length > 0">
-                <div *ngFor="let projectReference of project.references">
-                    <img width="100" [src]="projectReference" alt="image de référence">
+            <ng-template ngbTabContent>
+                <!-- Purchases -->
+                <div class="Purchases-list" *ngIf="project.purchases.length > 0">
+                    <div class="Purchase Purchase-title">
+                        <div class="Purchase-content">
+                            <p>A acheter</p>
+                            <p>Prix</p>
+                        </div>
+                        <p>Statut</p>
+                    </div>
+                    <ng-container *ngFor="let projectPurchase of project.purchases; index as i">
+                        <div class="Purchase">
+                            <div class="Purchase-content" (click)="openEditProjectPurchaseModal(projectPurchase, project)">
+                                <p>{{ projectPurchase.name }}</p>
+                                <p>{{ projectPurchase.price ? projectPurchase.price + ' €' : '-' }}</p>
+                            </div>
+                            <i (click)="updateStatus(i, false)" class="fa fa-check-circle Status-icon" aria-hidden="true"
+                                *ngIf="projectPurchase.status === true"></i>
+                            <i (click)="updateStatus(i, true)" class="fa fa-circle-o Status-icon" aria-hidden="true"
+                                *ngIf="projectPurchase.status === false"></i>
+                        </div>
+                    </ng-container>
                 </div>
-                <input type="file" (change)="getFile($event, 'referencePictureFile')">
-            </ng-template>
-            <ng-template ngbTabContent *ngIf="project.references.length <= 0">
-                <input type="file" (change)="getFile($event, 'referencePictureFile')">
+                <button (click)="openAddProjectPurchaseModal(project)">Ajouter un achat</button>
             </ng-template>
         </ngb-tab>
     </ngb-tabset>
