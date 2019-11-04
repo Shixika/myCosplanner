@@ -1,0 +1,15 @@
+<div class="Project-item u-pointer" routerLink="/detail/{{ project.id }}">
+    <div>
+        <div class="Project-picture"
+            [style.background-image]="project.picture ? 'url('+ project.picture +')' : 'url(assets/images/default_project_picture.png)'"
+            style="background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+        <div>
+            <p class="Project-character">{{ project.character }}</p>
+            <p>{{ project.series.substring(0, 21) }}<span *ngIf="project.series.length > 21">...</span></p>
+        </div>
+    </div>
+    <div>
+        <p [class]="project.percentDone >= 50 ? 'Percent-green' : 'Percent-red'"><span class="u-bold Percent">{{ project.percentDone }}%</span></p>
+        <i class="fa fa-angle-right Icon-arrow" aria-hidden="true"></i>
+    </div>
+</div>

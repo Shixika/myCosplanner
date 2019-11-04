@@ -1,20 +1,91 @@
-<div *ngIf="projects">
-    <input type="text" class="form-control u-input-icon"
-        [(ngModel)]="searchInput"
-        [ngbTypeahead]="search"
-        placeholder="Rechercher"
-        (input)="getSearchProject()" />
-    <i (click)="getProjects()" class="fa fa-times u-pointer" aria-hidden="true"></i>
+<div class="u-header">myCosplanner</div>
+<div *ngIf="projects && projectSearch" class="Projects-list">
+    <ng-container *ngIf="projects.length > 0">
+        <input type="text" class="form-control u-input u-input-icon"
+            [(ngModel)]="searchInput"
+            [ngbTypeahead]="search"
+            placeholder="Recherche (nom personnage ou série)"
+            (input)="getSearchProject()" />
+        <i (click)="clearSearch()" [class]="!searchInput ? 'fa fa-times u-pointer inactive' : 'fa fa-times u-pointer'" aria-hidden="true"></i>
 
-    <div *ngFor="let project of projectSearch">
-        <p>{{ project.character }}</p>
-        <p>{{ project.series }}</p>
-        <p>{{ project.percentDone }} %</p>
-        <img *ngIf="project.picture" width="50" [src]="project.picture" alt="photo du projet">
-        <img *ngIf="!project.picture" width="50" src="assets/images/default_project_picture.png" alt="photo du projet">
-    
-        <a routerLink="/detail/{{ project.id }}">Voir</a>
-    </div>
-    
-    <button (click)="openAddProjectModal()">Ajouter un projet</button>
+        <ng-container *ngIf="!searchInput">
+            <div *ngIf="getProjectsDoneNumber(projects) > 0" class="u-section"
+                (click)="isCollapsedProjectsDone = !isCollapsedProjectsDone"
+                [attr.aria-expanded]="!isCollapsedProjectsDone" aria-controls="projectsDoneCollapse">
+                <p class="u-title">
+                    <span class="u-bold">
+                        {{ getProjectsDoneNumber(projects) }} projet<span *ngIf="getProjectsDoneNumber(projects) > 1">s</span>
+                    </span>
+                    terminé<span *ngIf="getProjectsDoneNumber(projects) > 1">s</span>
+                </p>
+            
+                <p *ngIf="isCollapsedProjectsDone" class="u-section-button">Afficher <i class="fa fa-plus" aria-hidden="true"></i></p>
+                <p *ngIf="!isCollapsedProjectsDone" class="u-section-button">Masquer <i class="fa fa-minus" aria-hidden="true"></i></p>
+            </div>
+
+            <!-- Results done -->
+            <div id="projectsDoneCollapse" [ngbCollapse]="isCollapsedProjectsDone"
+                *ngFor="let project of (projectSearch | projectDone)">
+                <app-project-item [project]="project"></app-project-item>
+            </div>
+            
+            <div *ngIf="getProjectsInProgressNumber(projects) > 0" class="u-section"
+                (click)="isCollapsedProjectsInProgress = !isCollapsedProjectsInProgress"
+                [attr.aria-expanded]="!isCollapsedProjectsInProgress" aria-controls="projectsInProgressCollapse">
+                <p class="u-title">
+                    <span class="u-bold">
+                        {{ getProjectsInProgressNumber(projects) }} projet<span
+                            *ngIf="getProjectsInProgressNumber(projects) > 1">s</span>
+                    </span> en cours
+                </p>
+            
+                <p *ngIf="isCollapsedProjectsInProgress" class="u-section-button">Afficher <i class="fa fa-plus" aria-hidden="true"></i></p>
+                <p *ngIf="!isCollapsedProjectsInProgress" class="u-section-button">Masquer <i class="fa fa-minus" aria-hidden="true"></i></p>
+            </div>
+
+            <!-- Results in progress -->
+            <div id="projectsInProgressCollapse" [ngbCollapse]="isCollapsedProjectsInProgress"
+                *ngFor="let project of (projectSearch | projectInProgress)">
+                <app-project-item [project]="project"></app-project-item>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="searchInput">
+            <ng-container *ngIf="projectSearch.length > 0">
+                <p class="u-title Search-text">
+                    <span class="u-bold">{{ projectSearch.length }} resultat<span *ngIf="projectSearch.length > 1">s</span></span> pour la recherche ”{{ searchInput }}” :
+                </p>
+
+                <div *ngFor="let project of projectSearch">
+                    <app-project-item [project]="project"></app-project-item>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="projectSearch.length <= 0">
+                <p class="u-title Search-text">
+                    <span class="u-bold">Aucun résultat</span> ne corresponds à la recherche ”{{ searchInput }}”
+                </p>
+
+                <div class="Tuto">
+                    <p class="Tuto-text">Ajouter le projet</p>
+                    <img src="assets/images/arrow_tuto.svg" alt="Flèche">
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="projects.length <= 0">
+        <p class="u-title Search-text">
+            Il n'y a <span class="u-bold">aucun projet</span>
+        </p>
+        
+        <div class="Tuto">
+            <p class="Tuto-text">Ajouter un projet</p>
+            <img src="assets/images/arrow_tuto.svg" alt="Flèche">
+        </div>
+    </ng-container>
+
+    <button class="u-sticky-button" (click)="openAddProjectModal()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
 </div>

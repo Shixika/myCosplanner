@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ProjectsListingComponent } from './projects-listing/projects-listing.component';
+import { ProjectsDonePipe } from './projects-listing/pipe/projects-done.pipe';
+import { ProjectsInProgressPipe } from './projects-listing/pipe/projects-in-progress.pipe';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { AddProjectModalComponent } from './projects-listing/modal/add-project-modal/add-project-modal.component';
 import { EditProjectModalComponent } from './project-detail/modal/edit-project-modal/edit-project-modal.component';
@@ -23,18 +25,22 @@ import { AddProjectTodoModalComponent } from './project-detail/modal/add-project
 import { EditProjectPurchaseModalComponent
   } from './project-detail/modal/edit-project-purchase-modal/edit-project-purchase-modal.component';
 import { EditProjectTodoModalComponent } from './project-detail/modal/edit-project-todo-modal/edit-project-todo-modal.component';
+import { ProjectItemComponent } from './projects-listing/project-item/project-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsListingComponent,
+    ProjectsDonePipe,
+    ProjectsInProgressPipe,
     ProjectDetailComponent,
     AddProjectModalComponent,
     EditProjectModalComponent,
     AddProjectPurchaseModalComponent,
     AddProjectTodoModalComponent,
     EditProjectPurchaseModalComponent,
-    EditProjectTodoModalComponent
+    EditProjectTodoModalComponent,
+    ProjectItemComponent
   ],
   imports: [
     BrowserModule,

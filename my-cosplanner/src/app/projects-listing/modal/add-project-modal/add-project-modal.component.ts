@@ -34,7 +34,7 @@ export class AddProjectModalComponent implements OnInit {
           this.projects.push(result);
           this.projectsName.push(result.character);
           console.log(result);
-          modal.close('Ok click');
+          modal.close(('Ok click'));
         },
         err => console.log(err),
         () => console.log('add new project')

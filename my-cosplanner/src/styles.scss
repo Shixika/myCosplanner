@@ -1,15 +1,104 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
+// Override Html
+html {
+    font-size: 18px;
+}
+
+body {
+    background-color: #FFF9F7;
+    font-family: 'Red Hat Display', sans-serif;
+    color: #333;
+    font-weight: 400;
+}
+
+button {
+    outline: none;
+}
+
+p {
+    margin: 0;
+}
+
 // Utilities (always begin with u-)
+.u-background {
+    color: #FFF9F7;
+}
+
+.u-bold {
+    font-weight: 700;
+}
+
+.u-header {
+    padding: .5em;
+    text-align: center;
+    background-color: #6A8991;
+    color: #fff;
+    font-size: 24px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+// Input
+.u-input {
+    border-radius: 0;
+    border: 0;
+    box-shadow: 3px 1px 1px rgba(0,0,0,.1);
+}
+
+.u-input::placeholder {
+    color: #D0D8D9;
+}
+
 .u-input-icon {
     position: relative;
 }
 
 .u-input-icon + i {
     position: absolute;
-    top: 10px;
+    top: 83px;
     right: 10px;
+    color: #8D485A;
+}
+
+.u-input-icon + i.inactive {
+    color: #D0D8D9;
+}
+
+.u-sticky-button {
+    background: #8D485A;
+    border: 0;
+    color: #FFF9F7;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    position: fixed;
+    bottom: 15px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,.3);
+    right: 15px;
+
+    i {
+        font-size: 40px;
+    }
+}
+
+.u-section {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 1px 1px rgba(0,0,0,.1);
+    cursor: pointer;
+
+    .u-section-button {
+        color: #8D485A;
+    }
+}
+
+.u-title {
+    color: #5E7999;
+    font-weight: 500;
 }
 
 .u-pointer {

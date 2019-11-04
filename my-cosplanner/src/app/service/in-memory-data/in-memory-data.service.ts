@@ -122,6 +122,44 @@ export class InMemoryDataService implements InMemoryDbService {
         ],
         references: []
       },
+      {
+        id: 2,
+        budget: 20,
+        character: 'Bulma',
+        dueDate: '',
+        initialDate: '',
+        series: 'Dragon Ball',
+        percentDone: 100,
+        picture: '',
+        purchases: [
+          {
+            name: 'casquette',
+            price: 10,
+            status: true
+          }
+        ],
+        todos: [
+          {
+            name: 'Détecteur',
+            percent: 100,
+            time: '3h',
+            estimate: '2h',
+          },
+          {
+            name: 'casquette',
+            percent: 100,
+            time: '1h30',
+            estimate: '2h',
+          },
+          {
+            name: 'perruque',
+            percent: 100,
+            time: '1h',
+            estimate: '2h',
+          }
+        ],
+        references: []
+      }
     ];
     return { projects };
   }

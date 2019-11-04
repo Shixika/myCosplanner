@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { Project } from '../service/project/project';
@@ -19,6 +19,8 @@ export class ProjectsListingComponent implements OnInit {
   searchInput: string;
   projectsName: Array<string> = [];
   projectSearch: Project[];
+  public isCollapsedProjectsDone = true;
+  isCollapsedProjectsInProgress = false;
 
   constructor(
     private projectService: ProjectService,
@@ -31,10 +33,19 @@ export class ProjectsListingComponent implements OnInit {
     const modalRef = this.modalService.open(AddProjectModalComponent);
     modalRef.componentInstance.projects = this.projects;
     modalRef.componentInstance.projectsName = this.projectsName;
+    modalRef.result
+      .then(
+        () => this.clearSearch(),
+        () => console.log('Cancel modal')
+      );
+  }
+
+  clearSearch() {
+    this.searchInput = '';
+    this.getProjects();
   }
 
   getProjects(): void {
-    this.searchInput = '';
     this.projectService.getProjects()
       .subscribe(
         results => {
@@ -51,7 +62,7 @@ export class ProjectsListingComponent implements OnInit {
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      map(term => term.length < 2 ? []
+      map(term => term.length < 2 ? this.getProjects()
         : this.projectsName.filter(v => v.toLowerCase().startsWith(term.toLocaleLowerCase())).splice(0, 10))
     )
 
@@ -69,6 +80,26 @@ export class ProjectsListingComponent implements OnInit {
 
   setProjectsName(projects: Project[]): void {
     projects.map(x => this.projectsName.push(x.character));
+  }
+
+  getProjectsDoneNumber(projects) {
+    const projectsDone: Project[] = [];
+
+    projects.map(
+      project => project.percentDone === 100 ? projectsDone.push(project) : null
+    );
+
+    return projectsDone.length;
+  }
+
+  getProjectsInProgressNumber(projects) {
+    const projectsInProgress: Project[] = [];
+
+    projects.map(
+      project => project.percentDone < 100 ? projectsInProgress.push(project) : null
+    );
+
+    return projectsInProgress.length;
   }
 
   ngOnInit() {

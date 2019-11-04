@@ -1,0 +1,42 @@
+.Project-item {
+    background-color: #fff;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.Project-item > * {
+    display: flex;
+    align-items: center;
+}
+
+.Project-picture,
+.Percent {
+    margin-right: 10px;
+}
+
+.Project-picture {
+    border-radius: 80px;
+    width: 80px;
+    height: 80px;
+}
+
+.Project-character {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.Percent-green {
+    color: #6A9E92;
+}
+
+.Percent-red {
+    color: #8D485A;
+}
+
+.Icon-arrow {
+    font-size: 50px;
+    color: #D0D8D9;
+}
