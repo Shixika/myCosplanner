@@ -41,7 +41,7 @@ export class AddProjectModalComponent implements OnInit {
       );
   }
 
-  getFile(event) {
+  getFile(event: any) {
     this.fileData = event.target.files[0];
     this.setSelectedFile();
   }

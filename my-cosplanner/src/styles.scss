@@ -17,7 +17,8 @@ button {
     outline: none;
 }
 
-p {
+p,
+label {
     margin: 0;
 }
 
@@ -28,6 +29,19 @@ p {
 
 .u-bold {
     font-weight: 700;
+}
+
+.u-button {
+    border-radius: 0;
+    background-color: #8D485A;
+    color: #FFF9F7;
+    cursor: pointer;
+    font-size: 24px;
+    width: 100%;
+}
+
+.u-button:hover {
+    color: #fff;
 }
 
 .u-header {
@@ -44,8 +58,11 @@ p {
 // Input
 .u-input {
     border-radius: 0;
+    background: #fff;
+    margin: 1px 0;
     border: 0;
-    box-shadow: 3px 1px 1px rgba(0,0,0,.1);
+    box-shadow: 3px 1px 1px rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }
 
 .u-input::placeholder {
@@ -54,6 +71,12 @@ p {
 
 .u-input-icon {
     position: relative;
+    width: 100%;
+}
+
+.u-input-icon-button {
+    position: absolute;
+    right: 0;
 }
 
 .u-input-icon + i {
@@ -65,6 +88,88 @@ p {
 
 .u-input-icon + i.inactive {
     color: #D0D8D9;
+}
+
+.u-input-button:hover {
+    background: #8D485A;
+    color: #FFF9F7;
+}
+
+// Input file
+.u-input-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+    img {
+        margin: 10px;
+    }
+
+    .u-input {
+        display: none;
+    }
+}
+
+.u-label-file {
+    border-radius: 0;
+    background: #fff;
+    margin: 1px 0;
+    border: 0;
+    box-shadow: 3px 1px 1px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px;
+    position: relative;
+}
+
+.u-modal {
+    background-color: #FFF9F7;
+
+    h4 {
+        text-align: center;
+        margin: auto;
+    }
+
+    button.close {
+        color: #8D485A;
+        opacity: 100;
+        position: absolute;
+        right: 20px;
+    }
+
+    .modal-body {
+        padding: 0;
+    }
+
+    button {
+        border: 0;
+    }
+
+    .u-button {
+        margin-top: 30px;
+    }
+}
+
+.u-project-picture {
+    border-radius: 80px;
+    width: 80px;
+    height: 80px;
+    position: relative;
+
+    i {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: #FFF9F7;
+        background: #8D485A;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 1px 1px 4px rgba(0,0,0,.4);
+    }
 }
 
 .u-sticky-button {
