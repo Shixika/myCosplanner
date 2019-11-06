@@ -53,6 +53,21 @@ label {
     position: fixed;
     width: 100%;
     z-index: 1;
+
+    i {
+        position: absolute;
+        top: 15px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    i:first-child {
+        left: 15px;
+    }
+
+    i:last-child {
+        right: 15px;
+    }
 }
 
 // Input
@@ -63,6 +78,10 @@ label {
     border: 0;
     box-shadow: 3px 1px 1px rgba(0, 0, 0, 0.1);
     padding: 10px;
+}
+
+.u-input-calendar[readonly] {
+    background-color: #fff;
 }
 
 .u-input::placeholder {

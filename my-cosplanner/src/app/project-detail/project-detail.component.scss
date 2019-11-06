@@ -1,5 +1,51 @@
+.Header-character {
+    font-size: 21px;
+}
+
+.Header-series {
+    font-size: 17px;
+}
+
+.Project-recap {
+    padding: 80px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #6A8991;
+    color: #D0D8D9;
+
+    i {
+        color: #FFF9F7;
+    }
+
+    .Title {
+        font-size: 16px;
+    }
+
+    .Stats {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+
+        .Label-data {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .Data {
+            font-weight: 600;
+            color: #B7D6DE;
+            font-size: 22px;
+        }
+    }
+}
+
 .Project-detail {
     text-align: center;
+    padding-top: 10px;
 }
 
 .Todos-list,
@@ -59,4 +105,45 @@
     padding: 10px 0;
     min-width: 50px;
     text-align: center;
+}
+
+.Bottom-nav {
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex: 1;
+
+        i,
+        p {
+            color: #D0D8D9;
+            font-weight: 500;
+        }
+
+        i:first-child {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+}
+
+.Bottom-nav {
+    div.active {
+        i,
+        p {
+            color: #5E7999;
+        }
+    }
 }

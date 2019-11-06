@@ -31,7 +31,7 @@
                 (change)="project.budget = budget"/>
 
             <div class="input-group">
-                <input ngbDatepicker class="form-control u-pointer u-input"
+                <input readonly ngbDatepicker class="form-control u-pointer u-input u-input-calendar"
                     placeholder="Date de démarrage (optionnel)"
                     name="initialDate"
                     [(ngModel)]="initialDate"
@@ -46,7 +46,7 @@
             </div>
             
             <div class="input-group">
-                <input class="form-control u-pointer u-input"
+                <input readonly class="form-control u-pointer u-input u-input-calendar"
                     placeholder="Deadline (optionnel)"
                     name="dueDate" 
                     [(ngModel)]="dueDate" 

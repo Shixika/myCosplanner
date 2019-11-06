@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+import 'moment/locale/fr';
 
 import { Project } from '../service/project/project';
 import { ProjectService } from '../service/project/project.service';
@@ -22,6 +24,8 @@ export class ProjectDetailComponent implements OnInit {
   projectPictureFile: any = null;
   fileData: File = null;
   referencePictureFile: any = null;
+  public isCollapsedRecap = true;
+  public activeTab = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,6 +116,20 @@ export class ProjectDetailComponent implements OnInit {
     const todoResult = [];
     projectTodos.map(todo => todo.percent === 100 ? todoResult.push(todo) : null);
     return todoResult.length;
+  }
+
+  getMonthsLeft(): string {
+    const deadlineArray: string[] = this.project.dueDate.split('/'); // ["25", "12", "2019"]
+    const deadlineDay: string = deadlineArray[0].length > 1 ? deadlineArray[0] : '0' + deadlineArray[0]; // '25' || '01'
+    const deadlineMonth: string = deadlineArray[1].length > 1 ? deadlineArray[1] : '0' + deadlineArray[1]; // '12' || '09'
+    const deadlineYear: string = deadlineArray[2]; // '2019'
+    const deadlineStr: string = deadlineYear + '-' + deadlineMonth + '-' + deadlineDay;
+
+    const deadline: moment.Moment = moment(deadlineStr);
+    const today: moment.Moment = moment();
+    const diffDuration: moment.Duration = moment.duration(deadline.diff(today));
+
+    return diffDuration.humanize();
   }
 
   ngOnInit() {
