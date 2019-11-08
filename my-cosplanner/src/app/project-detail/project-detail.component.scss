@@ -48,6 +48,25 @@
     padding-top: 10px;
 }
 
+.Detail-main {
+    padding-bottom: 100px;
+
+    .Reference-picture-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        .Reference-picture {
+            height: 125px;
+            flex-basis: 33.33%;
+        }
+    }
+
+    .Detail-sticky-button {
+        bottom: 105px;
+        justify-content: center;
+    }
+}
+
 .Todos-list,
 .Purchases-list {
     display: flex;
@@ -114,6 +133,9 @@
     justify-content: space-between;
     padding: 10px;
     background-color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 
     div {
         display: flex;
@@ -127,6 +149,10 @@
         p {
             color: #D0D8D9;
             font-weight: 500;
+
+            i {
+                font-size: 16px;
+            }
         }
 
         i:first-child {

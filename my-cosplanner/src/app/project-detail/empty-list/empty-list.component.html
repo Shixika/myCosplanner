@@ -1,0 +1,10 @@
+<ng-container *ngIf="project.references.length <= 0">
+    <p class="u-title Empty-text">
+        Il n'y a <span class="u-bold">pas d'{{listing}}</span> pour le moment.
+    </p>
+
+    <div class="Tuto">
+        <p class="Tuto-text">Ajouter {{listing}}</p>
+        <img src="assets/images/arrow_tuto.svg" alt="Flèche">
+    </div>
+</ng-container>

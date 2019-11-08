@@ -12,6 +12,7 @@ import { AddProjectPurchaseModalComponent } from './modal/add-project-purchase-m
 import { AddProjectTodoModalComponent } from './modal/add-project-todo-modal/add-project-todo-modal.component';
 import { EditProjectPurchaseModalComponent } from './modal/edit-project-purchase-modal/edit-project-purchase-modal.component';
 import { EditProjectTodoModalComponent } from './modal/edit-project-todo-modal/edit-project-todo-modal.component';
+import { ReferencePictureModalComponent } from './modal/reference-picture-modal/reference-picture-modal.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -23,8 +24,7 @@ export class ProjectDetailComponent implements OnInit {
   selectedFile: any = null;
   projectPictureFile: any = null;
   fileData: File = null;
-  referencePictureFile: any = null;
-  public isCollapsedRecap = true;
+  public isCollapsedRecap = false;
   public activeTab = 1;
 
   constructor(
@@ -99,6 +99,11 @@ export class ProjectDetailComponent implements OnInit {
     const modalRef = this.modalService.open(EditProjectTodoModalComponent);
     modalRef.componentInstance.projectTodo = projectTodo;
     modalRef.componentInstance.project = project;
+  }
+
+  openReferencePictureModal(projectReference) {
+    const modalRef = this.modalService.open(ReferencePictureModalComponent );
+    modalRef.componentInstance.projectReference = projectReference;
   }
 
   updateStatus(index: number, newStatus: boolean) {
