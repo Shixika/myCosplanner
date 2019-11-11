@@ -48,21 +48,50 @@
     <main class="Detail-main">
         <ng-container *ngIf="activeTab === 1">
             <div *ngIf="project.references.length > 0" class="Reference-picture-list">
-                <ng-container *ngFor="let projectReference of project.references">
-                    <div class="Reference-picture u-pointer"
-                        (click)="openReferencePictureModal(projectReference)"
-                        [style.background-image]="'url('+ projectReference +')'"
-                        style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <ng-container *ngFor="let projectReference of project.references; let index = index">
+                    <div class="Reference-picture u-pointer">
+                        <div class="Picture"
+                            (click)="openReferencePictureModal(projectReference)"
+                            [style.background-image]="'url('+ projectReference +')'"
+                            style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="Delete-checkbox" *ngIf="activeDelete">
+                            <i class="fa fa-circle Checkbox-delete" aria-hidden="true" (click)="deleteReferencePicture(index)"
+                                *ngIf="isNotToDelete(index) === undefined"></i>
+                            
+                            <i class="fa fa-check Checkbox-cancel" aria-hidden="true" (click)="cancelDeleteReferencePicture(index)"
+                                *ngIf="isNotToDelete(index) !== undefined"></i>
+                        </div>
                     </div>
                 </ng-container>
+                
+                <!-- Sticky for select which to delete -->
+                <button class="u-sticky-button Select-sticky" (click)="activeDelete = true" *ngIf="activeDelete === false">
+                    <i class="fa fa-square-o" aria-hidden="true"></i>
+                </button>
+                <!-- Sticky for confirm delete -->
+                <button class="u-sticky-button Select-sticky"
+                    (click)="deleteReferencePictureSelected();activeDelete = false"
+                    *ngIf="activeDelete === true"
+                    [disabled]="projectReferenceToDelete.length > 0 ? false : true">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <span class="Delete-number" *ngIf="projectReferenceToDelete.length > 0">{{ projectReferenceToDelete.length }}</span>
+                </button>
             </div>
 
             <app-empty-list [project]="project" [listing]="'image de référence'"></app-empty-list>
 
-            <label for="picture-file" class="u-input-file u-pointer u-sticky-button Detail-sticky-button">
+            <label *ngIf="activeDelete === false" for="picture-file" class="u-input-file u-pointer u-sticky-button Bottom-sticky-button">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 <input id="picture-file" type="file" class="form-control u-input" (change)="getFile($event)">
             </label>
+            <button class="u-sticky-button Bottom-sticky-button"
+                (click)="projectReferenceToDelete = []; activeDelete = false"
+                *ngIf="activeDelete === true">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+            </button>
         </ng-container>
 
         <!-- Todos -->

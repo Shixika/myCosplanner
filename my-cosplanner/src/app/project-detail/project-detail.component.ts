@@ -13,6 +13,7 @@ import { AddProjectTodoModalComponent } from './modal/add-project-todo-modal/add
 import { EditProjectPurchaseModalComponent } from './modal/edit-project-purchase-modal/edit-project-purchase-modal.component';
 import { EditProjectTodoModalComponent } from './modal/edit-project-todo-modal/edit-project-todo-modal.component';
 import { ReferencePictureModalComponent } from './modal/reference-picture-modal/reference-picture-modal.component';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-project-detail',
@@ -26,6 +27,8 @@ export class ProjectDetailComponent implements OnInit {
   fileData: File = null;
   public isCollapsedRecap = false;
   public activeTab = 1;
+  projectReferenceToDelete: number[] = [];
+  public activeDelete = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -135,6 +138,35 @@ export class ProjectDetailComponent implements OnInit {
     const diffDuration: moment.Duration = moment.duration(deadline.diff(today));
 
     return diffDuration.humanize();
+  }
+
+  isNotToDelete(projectReferenceIndex: number) {
+    return this.projectReferenceToDelete.find(
+      (value) => value === projectReferenceIndex
+    );
+  }
+
+  deleteReferencePicture(projectReferenceIndex: number) {
+    this.projectReferenceToDelete.push(projectReferenceIndex);
+  }
+
+  cancelDeleteReferencePicture(projectReferenceIndex: number) {
+    const projectReferenceToDeleteIndex = this.projectReferenceToDelete.indexOf(projectReferenceIndex);
+    this.projectReferenceToDelete.splice(projectReferenceToDeleteIndex, 1);
+  }
+
+  deleteReferencePictureSelected() {
+    // If all elements are selected, delete all
+    if (this.projectReferenceToDelete.length === this.project.references.length) {
+      this.project.references = [];
+    } else {
+      // tslint:disable-next-line: prefer-for-of
+      for (let index = 0; index < this.projectReferenceToDelete.length; index++) {
+        this.project.references.splice(this.projectReferenceToDelete[index], 1);
+      }
+    }
+    this.projectReferenceToDelete = [];
+    this.updateProject();
   }
 
   ngOnInit() {
