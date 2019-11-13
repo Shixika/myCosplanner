@@ -1,10 +1,10 @@
 # MyCosplanner
 
-This project is a test to practice with Angular. It's using Angular 8.2.1.
+This project allows me to practice with Angular. It's currently in progress.
 
-I tried to reproduce the app [Cosplanner](http://www.cosplanner.net/) that is a cosplay project manager. It has many awesome features like shopping list, to do list, saving reference pictures. And for each project you'll have some statistics like budget management, progress in percent, and many others.
+I try to reproduce the app <a href="http://www.cosplanner.net/" alt="Cosplanner website - new tab" target="_blank">Cosplanner</a> that is a <a href="https://en.wikipedia.org/wiki/Cosplay" alt="Cosplay definition - new tab" target="_blank">_cosplay_</a> project manager. It has many awesome features like shopping list, to do list, saving reference pictures. And for each project you'll have some statistics like budget management, progress in percent, and many others.
 
-I choosed this app, first because I'm using it and it's really helpfull. Plus, it have many features to reproduce and I have a lot of new one to add. So I know that with this project, I will practice a lot with Angular.
+I choosed this app, first, because I'm using it and it's really helpfull. Plus, it have many features to reproduce and I have a lot of new one to add (like maybe more stats and new socials features). So I know that with this project, I will practice a lot with Angular.
 
 # Design
 
