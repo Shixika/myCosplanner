@@ -81,7 +81,7 @@
                 </button>
             </div>
 
-            <app-empty-list [project]="project" [listing]="'image de référence'"></app-empty-list>
+            <app-empty-list *ngIf="project.references.length === 0" [listing]="'image de référence'"></app-empty-list>
 
             <label *ngIf="activeDelete === false" for="picture-file" class="u-input-file u-pointer u-sticky-button Bottom-sticky-button">
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -112,7 +112,11 @@
                     </div>
                 </ng-container>
             </div>
-            <button (click)="openAddProjectTodoModal(project)">Ajouter</button>
+            <app-empty-list *ngIf="project.todos.length === 0" [listing]="'élément à faire'"></app-empty-list>
+            <button class="u-input-file u-pointer u-sticky-button Bottom-sticky-button"
+                (click)="openAddProjectTodoModal(project)">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
         </ng-container>
 
         <!-- Purchases -->
@@ -138,7 +142,7 @@
                     </div>
                 </ng-container>
             </div>
-            <app-empty-list [project]="project" [listing]="'élément à acheter'"></app-empty-list>
+            <app-empty-list *ngIf="project.purchases.length === 0" [listing]="'élément à acheter'"></app-empty-list>
             
             <button
                 class="u-input-file u-pointer u-sticky-button Bottom-sticky-button"

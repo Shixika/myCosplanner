@@ -8,7 +8,6 @@ import { Project } from '../../service/project/project';
   styleUrls: ['./empty-list.component.scss']
 })
 export class EmptyListComponent implements OnInit {
-  @Input() project: Project;
   @Input() listing: string;
 
   constructor() { }
