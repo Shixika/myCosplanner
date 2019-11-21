@@ -138,7 +138,13 @@
                     </div>
                 </ng-container>
             </div>
-            <button (click)="openAddProjectPurchaseModal(project)">Ajouter un achat</button>
+            <app-empty-list [project]="project" [listing]="'élément à acheter'"></app-empty-list>
+            
+            <button
+                class="u-input-file u-pointer u-sticky-button Bottom-sticky-button"
+                (click)="openAddProjectPurchaseModal(project)">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
         </ng-container>
     </main>
 
