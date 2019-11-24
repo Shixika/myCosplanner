@@ -28,6 +28,7 @@ import { EditProjectTodoModalComponent } from './project-detail/modal/edit-proje
 import { ProjectItemComponent } from './projects-listing/project-item/project-item.component';
 import { EmptyListComponent } from './project-detail/empty-list/empty-list.component';
 import { ReferencePictureModalComponent } from './project-detail/modal/reference-picture-modal/reference-picture-modal.component';
+import { ConfirmDeleteModalComponent } from './project-detail/modal/confirm-delete-modal/confirm-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ReferencePictureModalComponent } from './project-detail/modal/reference
     EditProjectTodoModalComponent,
     ProjectItemComponent,
     EmptyListComponent,
-    ReferencePictureModalComponent
+    ReferencePictureModalComponent,
+    ConfirmDeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { ReferencePictureModalComponent } from './project-detail/modal/reference
     AddProjectTodoModalComponent,
     EditProjectPurchaseModalComponent,
     EditProjectTodoModalComponent,
-    ReferencePictureModalComponent
+    ReferencePictureModalComponent,
+    ConfirmDeleteModalComponent
   ]
 })
 export class AppModule { }

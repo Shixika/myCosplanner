@@ -43,10 +43,10 @@
     }
 }
 
-.Project-detail {
-    text-align: center;
-    padding-top: 10px;
-}
+// .Project-detail {
+//     text-align: center;
+//     padding-top: 10px;
+// }
 
 .Detail-main {
     padding-bottom: 100px;
@@ -128,64 +128,110 @@
     }
 }
 
-.Todos-list,
-.Purchases-list {
+.Purchases-list,
+.Todos-list {
     display: flex;
     flex-direction: column;
-    background-color: #f1f1f1;
+
+    .Purchase,
+    .Todo {
+        align-items: center;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+
+        .Label {
+            font-weight: 500;
+            font-size: 22px;
+            flex: 1;
+        }
+
+        .Percent {
+            color: #5E7999;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .Purchase-info {
+            display: flex;
+            align-items: center;
+
+            .Purchase-price {
+                color: #8D485A;
+                font-size: 24px;
+                font-weight: 500;
+                padding-right: 10px;
+            }
+
+            .Status-icon {
+                font-size: 36px;
+                color: #5E7999;
+            }
+        }
+    }
 }
 
-.Purchase {
-    align-items: baseline;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1em;
-}
+// .Todos-list,
+// .Purchases-list {
+//     display: flex;
+//     flex-direction: column;
+//     background-color: #f1f1f1;
+// }
 
-.Purchase:hover:not(.Purchase-title),
-.Todo-content:hover {
-    background-color: #b7d6b6;
-    cursor: pointer;
-}
+// .Purchase {
+//     align-items: baseline;
+//     background: #fff;
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 10px;
+//     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+// }
 
-.Todo-content, .Todo-title,
-.Purchase-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 1em;
-    flex: 1;
-}
+// .Purchase:hover:not(.Purchase-title),
+// .Todo-content:hover {
+//     background-color: #b7d6b6;
+//     cursor: pointer;
+// }
 
-.Todo-content > *,
-.Todo-title > *,
-.Purchase-content > *{
-    text-align: center;
-    flex: 1;
-    margin: .5em 0;
-}
+// .Todo-content, .Todo-title,
+// .Purchase-content {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     flex: 1;
+// }
 
-.Todo-title,
-.Purchase-title {
-    background-color: #dedede;
-    font-weight: 600;
-}
+// .Todo-content > *,
+// .Todo-title > *,
+// .Purchase-content > *{
+//     text-align: center;
+//     flex: 1;
+//     margin: .5em 0;
+// }
 
-.Todo-content > *:first-child,
-.Todo-title > *:first-child,
-.Purchase-content > * {
-    text-align: left;
-}
+// .Todo-title,
+// .Purchase-title {
+//     background-color: #dedede;
+//     font-weight: 600;
+// }
 
-.Purchase-title > *:last-child {
-    text-align: right;
-}
+// .Todo-content > *:first-child,
+// .Todo-title > *:first-child,
+// .Purchase-content > * {
+//     text-align: left;
+// }
 
-.Status-icon {
-    padding: 10px 0;
-    min-width: 50px;
-    text-align: center;
-}
+// .Purchase-title > *:last-child {
+//     text-align: right;
+// }
+
+// .Status-icon {
+//     padding: 10px 0;
+//     min-width: 50px;
+//     text-align: center;
+// }
 
 .Bottom-nav {
     display: flex;

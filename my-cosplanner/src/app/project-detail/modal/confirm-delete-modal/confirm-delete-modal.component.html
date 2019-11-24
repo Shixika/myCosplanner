@@ -1,0 +1,15 @@
+<div *ngIf='projectElement' class="u-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Confirmer la suppression</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <p class="u-center Confirmation-text">Êtes-vous sûr de vouloir supprimer l'élément "<span class="u-bold">{{ projectElement.name }}</span>" ?</p>
+    </div>
+
+    <button ngbAutofocus type="button" class="btn u-button"
+        (click)="deleteProjectElement(this.activeModal)">Confirmer</button>
+</div>
