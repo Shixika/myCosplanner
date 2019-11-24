@@ -1,24 +1,29 @@
-<div *ngIf='project'>
+<div *ngIf='project' class="u-modal">
     <div class="modal-header">
         <h4 class="modal-title">Ajouter</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-
+    
+    <form>
     <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom*" required />
-        <label for="estimate">Temps estimé :</label>
-        <div class="form-group">
-            <input type="number" class="form-control" [(ngModel)]="hour" placeholder="HH (optionnel)" min="0" />
-            <input type="number" class="form-control" [(ngModel)]="minute" placeholder="MM (optionnel)" min="0" max="59" />
+        <ngb-alert *ngIf="!name" type="warning" [dismissible]="false">
+            Le champ <span class="u-bold">Nom</span> est obligatoire.
+        </ngb-alert>
+
+        <label for="name" class="u-label">Nom* :</label>
+        <input id="name" name="name" type="text" class="form-control u-input" [(ngModel)]="name" placeholder="Nom*" required />
+        <label for="estimate" class="u-label">Temps estimé :</label>
+        <div class="form-group" id="estimate">
+            <input name="hour" type="number" class="form-control u-input" [(ngModel)]="hour" placeholder="HH (optionnel)" min="0" />
+            <input name="minute" type="number" class="form-control u-input" [(ngModel)]="minute" placeholder="MM (optionnel)" min="0" max="59" />
         </div>
     </div>
-
-    <div class="modal-footer">
-        <button ngbAutofocus type="button" class="btn btn-primary"
-            [disabled]="name ? false : true"
-            (click)="addTodoProject(this.activeModal)">Sauvergarder</button>
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
-    </div>
+    
+    <button ngbAutofocus type="button" class="btn u-button" [disabled]="name ? false : true"
+        (click)="addTodoProject(this.activeModal)">
+        Sauvergarder
+    </button>
+    </form>
 </div>

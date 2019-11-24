@@ -31,6 +31,12 @@ label {
     font-weight: 700;
 }
 
+.u-button-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .u-button {
     border-radius: 0;
     background-color: #8D485A;
@@ -42,6 +48,11 @@ label {
 
 .u-button:hover {
     color: #fff;
+}
+
+.u-center {
+    text-align: center;
+    margin: auto;
 }
 
 .u-header {
@@ -114,6 +125,12 @@ label {
     color: #FFF9F7;
 }
 
+form {
+    .u-label {
+        padding: 15px 10px 10px;
+    }
+}
+
 // Input file
 .u-input-file {
     display: flex;
@@ -147,6 +164,10 @@ label {
     h4 {
         text-align: center;
         margin: auto;
+    }
+
+    .alert {
+        margin: 0;
     }
 
     button.close {
@@ -220,7 +241,7 @@ label {
     }
 }
 
-.u-title {
+.u-label {
     color: #5E7999;
     font-weight: 500;
 }

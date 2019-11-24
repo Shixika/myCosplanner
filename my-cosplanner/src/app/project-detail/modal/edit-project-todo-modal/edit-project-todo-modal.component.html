@@ -1,4 +1,4 @@
-<div *ngIf='project'>
+<div *ngIf='project' class="u-modal">
     <div class="modal-header">
         <h4 class="modal-title">Modifier</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -6,30 +6,38 @@
         </button>
     </div>
 
-    <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="name" placeholder="Nom*" required />
-        <label for="estimate">Temps estimé :</label>
-        <div class="form-group">
-            <input type="number" class="form-control" [(ngModel)]="estimateHour" placeholder="HH (optionnel)" min="0" />
-            <input type="number" class="form-control" [(ngModel)]="estimateMinute" placeholder="MM (optionnel)" min="0"
-                max="59" />
-        </div>
-        <label for="time">Temps passé</label>
-        <div class="form-group">
-            <input type="number" class="form-control" [(ngModel)]="timeHour" placeholder="HH (optionnel)" min="0" />
-            <input type="number" class="form-control" [(ngModel)]="timeMinute" placeholder="MM (optionnel)" min="0" max="59" />
+    <form>
+        <div class="modal-body">
+            <ngb-alert *ngIf="!name" type="warning" [dismissible]="false">
+                Le champ <span class="u-bold">Nom</span> est obligatoire.
+            </ngb-alert>
+            
+            <input type="text" class="form-control u-input" [(ngModel)]="name" placeholder="Nom*" name="name" required />
+            <label for="estimate" class="u-label">Temps estimé :</label>
+            <div class="form-group" id="estimate">
+                <input type="number" name="estimateHour" class="form-control u-input" [(ngModel)]="estimateHour" placeholder="HH (optionnel)" min="0" />
+                <input type="number" name="estimateMinute" class="form-control u-input" [(ngModel)]="estimateMinute" placeholder="MM (optionnel)" min="0"
+                    max="59" />
+            </div>
+            <label for="time" class="u-label">Temps passé :</label>
+            <div class="form-group" id="time">
+                <input type="number" name="timeHour" class="form-control u-input" [(ngModel)]="timeHour" placeholder="HH (optionnel)" min="0" />
+                <input type="number" name="timeMinute" class="form-control u-input" [(ngModel)]="timeMinute" placeholder="MM (optionnel)" min="0" max="59" />
+            </div>
+
+            <!-- Percent -->
+            <label for="time" class="u-label">Progression :</label>
+            <select name="percent" [(ngModel)]="selectedPercent" class="form-control u-input">
+                <option *ngFor="let percent of percents" [ngValue]="percent">{{ percent }}%</option>
+            </select>
         </div>
 
-        <!-- Percent -->
-        <select name="percent" [(ngModel)]="selectedPercent">
-            <option *ngFor="let percent of percents" [ngValue]="percent">{{ percent }}</option>
-        </select>
-    </div>
+        <p (click)="deleteTodoProject(this.activeModal)" class="Delete-button u-center u-pointer">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <span>Supprimer cet élément de la liste</span>
+        </p>
 
-    <div class="modal-footer">
-        <button ngbAutofocus type="button" class="btn btn-primary" [disabled]="name ? false : true"
+        <button ngbAutofocus type="button" class="btn u-button" [disabled]="name ? false : true"
             (click)="updateTodoProject(this.activeModal)">Sauvergarder</button>
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Annuler</button>
-        <button type="button" class="btn btn-danger" (click)="deleteTodoProject(this.activeModal)">Supprimer de la liste</button>
-    </div>
+    </form>
 </div>

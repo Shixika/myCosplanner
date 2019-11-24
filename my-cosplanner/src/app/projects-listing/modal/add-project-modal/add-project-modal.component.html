@@ -8,6 +8,11 @@
 
     <ng-container *ngIf="project">
         <div class="modal-body">
+            <ngb-alert *ngIf="!character || !series" type="warning" [dismissible]="false">
+                <p *ngIf="!character">Le champ <span class="u-bold">Personnage</span> est obligatoire.</p>
+                <p *ngIf="!series">Le champ <span class="u-bold">Série</span> est obligatoire.</p>
+            </ngb-alert>
+
             <label for="picture-file" class="u-input-file u-pointer">
                 <div class="u-project-picture"
                     [style.background-image]="project.picture ? 'url('+ project.picture +')' : 'url(assets/images/default_project_picture.png)'"
