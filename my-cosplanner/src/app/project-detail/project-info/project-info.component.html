@@ -1,0 +1,51 @@
+<ng-container *ngIf="project">
+    <app-header
+        [title]="'Détail'"
+        [leftLink]="'/detail/'+project.id"
+        [iconLeft]="'fa-angle-left'">
+    </app-header>
+
+    <div class="u-body">
+        <label for="picture-file" class="u-input-file u-pointer">
+            <div class="u-project-picture"
+                [style.background-image]="project.picture ? 'url('+ project.picture +')' : 'url(assets/images/default_project_picture.png)'"
+                style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </div>
+            <input id="picture-file" type="file" class="form-control u-input" [(ngModel)]="picture"
+                (change)="getFile($event)" />
+        </label>
+
+        <input type="text" class="form-control u-input" [(ngModel)]="character" placeholder="Personnage*"
+            (change)="project.character = character" />
+        <input type="text" class="form-control u-input" [(ngModel)]="series" placeholder="Series*"
+            (change)="project.series = series" />
+        <input type="number" class="form-control u-input" min="0" [(ngModel)]="budget" placeholder="Budget (optionnel)"
+            (change)="project.budget = budget" />
+        
+        <div class="input-group">
+            <input readonly ngbDatepicker class="form-control u-pointer u-input u-input-calendar"
+                placeholder="Date de démarrage (optionnel)" name="initialDate" [(ngModel)]="initialDate"
+                #initialdate="ngbDatepicker" (ngModelChange)="setDatetoString(initialDate, 'initialDate')"
+                (click)="initialdate.toggle()">
+            <div class="input-group-append u-input-icon-button">
+                <button class="btn btn-outline-secondary calendar u-input-button" (click)="initialdate.toggle()" type="button">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <input readonly class="form-control u-pointer u-input u-input-calendar" placeholder="Deadline (optionnel)"
+                name="dueDate" [(ngModel)]="dueDate" ngbDatepicker #duedate="ngbDatepicker"
+                (ngModelChange)="setDatetoString(dueDate, 'dueDate')" (click)="duedate.toggle()">
+            <div class="input-group-append u-input-icon-button">
+                <button class="btn btn-outline-secondary calendar u-input-button" (click)="duedate.toggle()" type="button">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <p class="u-label">Récapitulatif</p>
+    </div>
+</ng-container>

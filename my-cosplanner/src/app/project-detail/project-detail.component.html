@@ -1,12 +1,12 @@
 <ng-container *ngIf="project">
-    <div class="u-header">
-        <i routerLink="/index" class="fa fa-angle-left" aria-hidden="true"></i>
-        <div>
-            <p class="Header-character">{{ project.character }}</p>
-            <p class="Header-series">{{ project.series }}</p>
-        </div>
-        <i class="fa fa-id-card-o" aria-hidden="true"></i>
-    </div>
+    <app-header
+        [title]="project.character"
+        [subTitle]="project.series"
+        [leftLink]="'/index'"
+        [rightLink]="'/detail/info/'+project.id"
+        [iconRight]="'fa-id-card-o'"
+        [iconLeft]="'fa-angle-left'">
+    </app-header>
 
     <div class="Project-recap u-pointer" (click)="isCollapsedRecap = !isCollapsedRecap">
         <p class="Title">Récapitulatif</p>

@@ -1,5 +1,5 @@
-<div class="u-header">myCosplanner</div>
-<div *ngIf="projects && projectSearch" class="Projects-list">
+<app-header [title]="'myCosplanner'"></app-header>
+<div *ngIf="projects && projectSearch" class="u-body">
     <ng-container *ngIf="projects.length > 0">
         <input type="text" class="form-control u-input u-input-icon"
             [(ngModel)]="searchInput"

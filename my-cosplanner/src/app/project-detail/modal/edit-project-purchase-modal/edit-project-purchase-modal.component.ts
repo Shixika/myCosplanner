@@ -42,19 +42,6 @@ export class EditProjectPurchaseModalComponent implements OnInit {
     modal.close('Confirm delete');
   }
 
-  deletePurchaseProject(modal: any) {
-    const indexPurchase = this.project.purchases.indexOf(this.projectPurchase);
-    this.project.purchases.splice(indexPurchase, 1);
-
-    // Update project
-    this.projectService.updateProject(this.project)
-      .subscribe(
-        () => modal.close('Delete click'),
-        err => console.log(err),
-        () => console.log('update project', this.project.id)
-      );
-  }
-
   ngOnInit() {
     this.name = this.projectPurchase ? this.projectPurchase.name : '';
     this.price = this.projectPurchase ? this.projectPurchase.price : null;

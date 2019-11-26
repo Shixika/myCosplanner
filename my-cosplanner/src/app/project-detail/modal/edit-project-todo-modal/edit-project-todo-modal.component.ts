@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Project } from '../../../service/project/project';
 import { ProjectService } from '../../../service/project/project.service';
+import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+
 
 @Component({
   selector: 'app-edit-project-todo-modal',
@@ -24,7 +26,8 @@ export class EditProjectTodoModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private modalService: NgbModal
   ) { }
 
   updateTodoProject(modal: any) {
@@ -72,6 +75,14 @@ export class EditProjectTodoModalComponent implements OnInit {
         err => console.log(err),
         () => console.log('update project', this.project.id)
       );
+  }
+
+  openConfirmDeleteModal(projectElement: {}, project: Project, modal: any) {
+    const modalRef = this.modalService.open(ConfirmDeleteModalComponent);
+    modalRef.componentInstance.projectElement = projectElement;
+    modalRef.componentInstance.project = project;
+    modalRef.componentInstance.element = project.todos;
+    modal.close('Confirm delete');
   }
 
   deleteTodoProject(modal: any) {

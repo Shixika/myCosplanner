@@ -29,6 +29,8 @@ import { ProjectItemComponent } from './projects-listing/project-item/project-it
 import { EmptyListComponent } from './project-detail/empty-list/empty-list.component';
 import { ReferencePictureModalComponent } from './project-detail/modal/reference-picture-modal/reference-picture-modal.component';
 import { ConfirmDeleteModalComponent } from './project-detail/modal/confirm-delete-modal/confirm-delete-modal.component';
+import { ProjectInfoComponent } from './project-detail/project-info/project-info.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ConfirmDeleteModalComponent } from './project-detail/modal/confirm-dele
     ProjectItemComponent,
     EmptyListComponent,
     ReferencePictureModalComponent,
-    ConfirmDeleteModalComponent
+    ConfirmDeleteModalComponent,
+    ProjectInfoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

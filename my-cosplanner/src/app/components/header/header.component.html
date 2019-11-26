@@ -1,0 +1,16 @@
+<div *ngIf="!subTitle" class="u-header">
+    <i routerLink="{{ leftLink }}" [class]="'fa '+ iconLeft" aria-hidden="true"></i>
+    <div>
+        <p class="First-title">{{ title }}</p>
+    </div>
+    <i routerLink="{{ rightLink }}" [class]="'fa '+ iconRight" aria-hidden="true"></i>
+</div>
+
+<div *ngIf="subTitle" class="u-header">
+    <i routerLink="{{ leftLink }}" [class]="'fa '+ iconLeft" aria-hidden="true"></i>
+    <div>
+        <p class="First-title">{{ title }}</p>
+        <p class="Second-title">{{ subTitle }}</p>
+    </div>
+    <i routerLink="{{ rightLink }}" [class]="'fa '+ iconRight" aria-hidden="true"></i>
+</div>
